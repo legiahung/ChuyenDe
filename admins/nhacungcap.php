@@ -2,8 +2,6 @@
 session_start();
 include "config.php";
 include 'action_NCC.php';
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,30 +9,19 @@ ini_set('display_errors', 1);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Quản Lý Nhà Cung Cấp</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
 <body class="bg-white">
     <div class="container mx-auto">
         <div class="container-fluid">
-            <div class="row justify-center">
-                <div class="col-md-10">
-                    <h3 class="text-center text-dark mt-2">Danh sách các nhà cung cấp</h3>
-                    <hr class="my-4">
-                    <?php if (isset($_SESSION['response'])) { ?>
-                        <div class="alert alert-<?= $_SESSION['res_type']; ?> alert-dismissible text-center">
-                            <button type="button" class="close" data-dismiss="alert">&times;</button>
-                            <b><?= $_SESSION['response']; ?></b>
-                        </div>
-                    <?php }
-                    unset($_SESSION['response']); ?>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
+            <div class="grid grid-cols-12 gap-4">
+                <!-- Phần cột trái (col-md-4) -->
+                <div class="col-span-12 md:col-span-4">
                     <h3 class="text-center text-info">Thêm nhà cung cấp</h3>
                     <form action="action_ncc.php" method="post" enctype="multipart/form-data" class="mt-4">
+                    <input type="hidden" name="id" value="<?= $id; ?>">
                         <div class="mb-4">
                             <input type="text" name="tenncc" value="<?= $tenncc; ?>" class="border rounded-lg px-4 py-2 w-full" placeholder="Nhập tên NCC" required>
                         </div>
@@ -57,7 +44,8 @@ ini_set('display_errors', 1);
                     </form>
                 </div>
 
-                <div class="col-md-8">
+                <!-- Phần cột phải (col-md-8) -->
+                <div class="col-span-12 md:col-span-8">
                     <?php
                     $query = 'SELECT * FROM nhacungcap';
                     $stmt = $conn->prepare($query);
@@ -102,9 +90,10 @@ ini_set('display_errors', 1);
         </div>
     </div>
     <script type="text/javascript">
-        document.addEventListener("DOMContentLoaded", function() {
-            var elems = document.querySelectorAll('.table');
-            var instances = M.Table.init(elems);
+        $(document).ready(function() {
+            $('#data-table').DataTable({
+                paging: true
+            });
         });
     </script>
 </body>

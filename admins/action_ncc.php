@@ -54,25 +54,48 @@ if (isset($_GET['edit'])) {
     $email = $row['Email'];
     $addncc = $row['DiaChi'];
     $phonencc = $row['SoDienThoai'];
-    $update = true;
-}
 
-// Thực hiện cập nhật thông tin nhà cung cấp
-if (isset($_POST['update'])) {
+    $update=true;
+}if (isset($_POST['update'])) {
     $id = $_POST['id'];
     $tenncc = $_POST['tenncc'];
     $email = $_POST['email'];
     $addncc = $_POST['addncc'];
     $phonencc = $_POST['phonencc'];
-
+  
+    // Kiểm tra xem dữ liệu mới có khác với dữ liệu cũ không
+    $query_check = "SELECT * FROM nhacungcap WHERE MaNhaCungCap=?";
+    $stmt_check = $conn->prepare($query_check);
+    $stmt_check->bind_param("s", $id);
+    $stmt_check->execute();
+    $result_check = $stmt_check->get_result();
+    $row_check = $result_check->fetch_assoc();
+  
+    $id_old = $row_check['id'];
+    $tenncc_old = $row_check['tenncc'];
+    $emailncc_old = $row_check['email'];
+    $addncc_old = $row_check['addncc'];
+    $phonencc_old = $row_check['phonencc'];
+  
+    if ($id != $id_old || $tenncc != $tenncc_old || $email != $emailncc_old 
+    || $addncc != $addncc_old || $phonencc != $phonencc_old ) {
+      echo "Dữ liệu được chỉnh sửa mới:<br>";
+      echo "ID: " . $id . "<br>";
+      echo "Tên NCC: " . $tenncc . "<br>";
+      echo "Email NCC: " . $email . "<br>";
+      echo "Địa chỉ NCC: " . $addncc . "<br>";
+      echo "SĐT NCC: " . $phonencc . "<br>";
+    }
+  
+    // Tiếp tục thực hiện câu truy vấn UPDATE
     $query = "UPDATE nhacungcap SET TenNhaCungCap=?, Email=?, DiaChi=?, SoDienThoai=? WHERE MaNhaCungCap=?";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("sssss", $tenncc, $email, $addncc, $phonencc, $id);
+    $stmt->bind_param("sssss", $tenncc, $email, $addncc, $phonencc , $id);
     $stmt->execute();
-
-    header('location: nhacungcap.php');
-    $_SESSION['response'] = "Successfully Updated!";
+  
+    $_SESSION['response'] = "Updated Successfully!";
     $_SESSION['res_type'] = "primary";
+    header('location: nhacungcap.php');
 }
 
 
