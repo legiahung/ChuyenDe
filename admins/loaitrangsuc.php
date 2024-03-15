@@ -1,8 +1,8 @@
 <?php
-session_start();
 include "config.php";
 include 'action_loaits.php';
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,13 +16,27 @@ include 'action_loaits.php';
 <body class="bg-white">
     <div class="container mx-auto">
         <div class="container-fluid">
+            <div class="flex justify-center">
+                <div class="w-10/12">
+                    <h3 class="text-center text-dark mt-2">Danh Sách Loại Trang Sức</h3>
+                    <hr class="my-4">
+                    <?php if (isset($_SESSION['response'])) { ?>
+                        <div id="alert-message" class="alert alert-<?= $_SESSION['res_type']; ?> text-center">
+                            <button id="close-btn" type="button" class="close">&times;</button>
+                            <b><?= $_SESSION['response']; ?></b>
+                        </div>
+                    <?php }
+                    unset($_SESSION['response']); ?>
+                </div>
+            </div>
+
             <div class="grid grid-cols-2 gap-4">
                 <!-- Phần cột trái -->
                 <div class="col-span-1">
                     <h3 class="text-center text-info">Thêm nhà cung cấp</h3>
                     <form action="action_loaits.php" method="post" enctype="multipart/form-data" class="mt-4">
                         <div class="mb-4">
-                        <input type="hidden" name="maloaitrangsuc" value="<?= $maloaitrangsuc; ?>"> 
+                            <input type="hidden" name="maloaitrangsuc" value="<?= $maloaitrangsuc; ?>">
                             <input type="text" name="tenloaitrangsuc" value="<?= $tenloaitrangsuc; ?>" class="border rounded-lg px-4 py-2 w-full" placeholder="Nhập tên loại trang sức" required>
                         </div>
                         <?php if ($maloaitrangsuc == true) { ?>
@@ -71,11 +85,11 @@ include 'action_loaits.php';
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#data-table').DataTable({
-                paging: true
-            });
+    <script>
+        // Lắng nghe sự kiện click vào nút đóng
+        document.getElementById('close-btn').addEventListener('click', function() {
+            // Ẩn phần tử chứa thông báo
+            document.getElementById('alert-message').style.display = 'none';
         });
     </script>
 </body>

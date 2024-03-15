@@ -1,5 +1,4 @@
 <?php
-session_start();
 include "config.php";
 include 'action_NCC.php';
 ?>
@@ -16,12 +15,26 @@ include 'action_NCC.php';
 <body class="bg-white">
     <div class="container mx-auto">
         <div class="container-fluid">
+            <div class="flex justify-center">
+                <div class="w-10/12">
+                    <h3 class="text-center text-dark mt-2">Thông Tin Nhà Cung Cấp</h3>
+                    <hr class="my-4">
+                    <?php if (isset($_SESSION['response'])) { ?>
+                        <div id="alert-message" class="alert alert-<?= $_SESSION['res_type']; ?> text-center">
+                            <button id="close-btn" type="button" class="close">&times;</button>
+                            <b><?= $_SESSION['response']; ?></b>
+                        </div>
+                    <?php }
+                    unset($_SESSION['response']); ?>
+                </div>
+            </div>
+
             <div class="grid grid-cols-12 gap-4">
                 <!-- Phần cột trái (col-md-4) -->
                 <div class="col-span-12 md:col-span-4">
                     <h3 class="text-center text-info">Thêm nhà cung cấp</h3>
                     <form action="action_ncc.php" method="post" enctype="multipart/form-data" class="mt-4">
-                    <input type="hidden" name="id" value="<?= $id; ?>">
+                        <input type="hidden" name="id" value="<?= $id; ?>">
                         <div class="mb-4">
                             <input type="text" name="tenncc" value="<?= $tenncc; ?>" class="border rounded-lg px-4 py-2 w-full" placeholder="Nhập tên NCC" required>
                         </div>
@@ -94,6 +107,13 @@ include 'action_NCC.php';
             $('#data-table').DataTable({
                 paging: true
             });
+        });
+    </script>
+        <script>
+        // Lắng nghe sự kiện click vào nút đóng
+        document.getElementById('close-btn').addEventListener('click', function() {
+            // Ẩn phần tử chứa thông báo
+            document.getElementById('alert-message').style.display = 'none';
         });
     </script>
 </body>
