@@ -11,6 +11,7 @@ include 'action_loaits.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản Lý Loại Trang Sức</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
 </head>
 
 <body class="bg-white">
@@ -56,7 +57,7 @@ include 'action_loaits.php';
                     ?>
                     <h3 class="text-center text-info">Các loại trang sức có trong dữ liệu</h3>
                     <div class="account-list max-h-500 overflow-y-scroll w-900">
-                        <table class="table-auto">
+                        <table class="table-auto" id="data-table">
                             <thead>
                                 <tr>
                                     <th class="px-4 py-2">Mã Loại Trang Sức</th>
@@ -66,7 +67,7 @@ include 'action_loaits.php';
                             </thead>
                             <tbody>
                                 <?php while ($row = $result->fetch_assoc()) { ?>
-                                    <tr class="bg-white">
+                                    <tr class="bg-white hover:bg-gray-100 transition duration-300">
                                         <td class="border px-4 py-2"><?= $row['MaLoaiTrangSuc']; ?></td>
                                         <td class="border px-4 py-2"><?= $row['TenLoaiTrangSuc']; ?></td>
                                         <td class="border px-4 py-2">
@@ -85,6 +86,13 @@ include 'action_loaits.php';
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#data-table').DataTable({
+                paging: true
+            });
+        });
+    </script>
     <script>
         // Lắng nghe sự kiện click vào nút đóng
         document.getElementById('close-btn').addEventListener('click', function() {

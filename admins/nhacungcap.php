@@ -10,6 +10,7 @@ include 'action_NCC.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản Lý Nhà Cung Cấp</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
 </head>
 
 <body class="bg-white">
@@ -65,9 +66,9 @@ include 'action_NCC.php';
                     $stmt->execute();
                     $result = $stmt->get_result();
                     ?>
-                    <h3 class="text-center text-info">Các NCC có sẵn trong cơ sở dữ liệu</h3>
+                    <h3 class="text-center text-info">Các nhà cung cấp có trong dữ liệu</h3>
                     <div class="account-list max-h-500 overflow-y-scroll w-900">
-                        <table class="table-auto">
+                        <table class="table-auto" id="data-table">
                             <thead>
                                 <tr>
                                     <th class="px-4 py-2">Mã Nhà Cung Cấp</th>
@@ -80,7 +81,7 @@ include 'action_NCC.php';
                             </thead>
                             <tbody>
                                 <?php while ($row = $result->fetch_assoc()) { ?>
-                                    <tr class="bg-white">
+                                    <tr class="bg-white hover:bg-gray-100 transition duration-300" >
                                         <td class="border px-4 py-2"><?= $row['MaNhaCungCap']; ?></td>
                                         <td class="border px-4 py-2"><?= $row['TenNhaCungCap']; ?></td>
                                         <td class="border px-4 py-2"><?= $row['Email']; ?></td>
@@ -103,13 +104,15 @@ include 'action_NCC.php';
         </div>
     </div>
     <script type="text/javascript">
-        $(document).ready(function() {
-            $('#data-table').DataTable({
-                paging: true
-            });
+    $(document).ready(function() {
+        $('#data-table').DataTable({
+            paging: true,
+            searching: true,
+            lengthMenu: [5, 10, 25, 50] // Số lượng bản ghi trên mỗi trang
         });
-    </script>
-        <script>
+    });
+</script>
+    <script>
         // Lắng nghe sự kiện click vào nút đóng
         document.getElementById('close-btn').addEventListener('click', function() {
             // Ẩn phần tử chứa thông báo
