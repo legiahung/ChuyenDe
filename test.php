@@ -7,13 +7,12 @@
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body>
-  <nav class="bg-gray-800 text-white">
+  <nav class="bg-black text-white">
     <div class="container mx-auto px-4">
       <div class="flex justify-between items-center py-4">
         <!-- Brand logo -->
         <div class="flex items-center">
-          <img class="h-8 w-8" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Logo">
-          <span class="ml-2 font-semibold">Brand</span>
+          <img class="h-24 w-96" src="imgs/banner.jpg" alt="Logo">
         </div>
         <!-- Navbar links -->
         <div class="hidden md:block">
