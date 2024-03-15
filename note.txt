@@ -1,3 +1,4 @@
 admin:
-
 chưa edit được thông tin của nhà cung cấp : đã fix 17h26 
+chưa có phân trang và tìm kiếm
+đã thiết kế nhà cung cấp, loại trang sức gồm các chức năng cơ bản 
