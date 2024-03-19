@@ -1,6 +1,6 @@
 <?php
 include "config.php";
-include 'action_NCC.php';
+include 'action_ncc.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
