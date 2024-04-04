@@ -1,6 +1,6 @@
 <?php
 include "config.php";
-include 'action_taikhoan.php';
+include 'action_nhanvien.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,8 +33,8 @@ include 'action_taikhoan.php';
             <div class="grid grid-cols-12 gap-4">
                 <!-- Phần cột trái (col-md-4) -->
                 <div class="col-span-12 md:col-span-4">
-                    <h3 class="text-center text-info">Thêm Bộ Phận</h3>
-                    <form action="action_taikhoan.php" method="post" enctype="multipart/form-data" class="mt-4">
+                    <h3 class="text-center text-info">Thêm Tài Khoản</h3>
+                    <form action="action_nhanvien.php" method="post" enctype="multipart/form-data" class="mt-4">
                         <input type="hidden" name="id" value="<?= $id; ?>">
                         <div class="mb-4">
                             <input type="text" name="username" value="<?= $username; ?>" class="border rounded-lg px-4 py-2 w-full" placeholder="Nhập Tên Đăng Nhập" required>
@@ -61,7 +61,7 @@ include 'action_taikhoan.php';
                 <!-- Phần cột phải (col-md-8) -->
                 <div class="col-span-12 md:col-span-8">
                     <?php
-                    $query = 'SELECT * FROM taikhoan';
+                    $query = 'SELECT * FROM taikhoannhanvien';
                     $stmt = $conn->prepare($query);
                     $stmt->execute();
                     $result = $stmt->get_result();
@@ -87,8 +87,8 @@ include 'action_taikhoan.php';
                                         <td class="border px-6 py-3"><?= $row['LoaiTaiKhoan']; ?></td>
                                         <td class="border px-6 py-3">
                                             <div class="flex flex-col">
-                                                <a href="action_taikhoan.php?delete=<?= $row['MaTaiKhoan']; ?>" onclick="return confirm('Bạn có chắc là muốn xóa?');" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded mb-2 text-sm">Xóa</a>
-                                                <a href="taikhoan.php?edit=<?= $row['MaTaiKhoan']; ?>" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded text-sm">Chỉnh sửa</a>
+                                                <a href="action_nhanvien.php?delete=<?= $row['MaTaiKhoan']; ?>" onclick="return confirm('Bạn có chắc là muốn xóa?');" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded mb-2 text-sm">Xóa</a>
+                                                <a href="taikhoan_nhanvien.php?edit=<?= $row['MaTaiKhoan']; ?>" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded text-sm">Chỉnh sửa</a>
                                             </div>
                                         </td>
                                     </tr>
