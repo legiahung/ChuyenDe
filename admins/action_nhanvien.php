@@ -1,36 +1,41 @@
 <?php
-session_start();
-include "config.php";
-mysqli_set_charset($conn, 'utf8mb4');
-$update=false;
-$id="";
-$name="";
-$gioitinh = "";
-$ngaysinh="";
-$diachi="";
-$sodienthoai="";
-$pass="";
-$photo="";
-$id_pb = "";
-$id_bp = "";
+    session_start();
+    include "config.php";
+    mysqli_set_charset($conn, 'utf8mb4');
+
+    $id="";
+    $name="";
+    $gioitinh = "";
+    $ngaysinh="";
+    $diachi="";
+    $sodienthoai="";
+    $email="";
+    $pass="";
+    $photo="";
+    $id_pb = "";
+    $id_bp = "";
+
+    $update=false;
 
 if (isset($_POST['add'])) {
 
     $id = $_POST['id'];
     $name = $_POST['name'];
-    $gioitinh = $_POST['$gioitinh'];
-    $ngaysinh = $_POST['$ngaysinh'];
+    $gioitinh = $_POST['gioitinh'];
+    $ngaysinh = $_POST['ngaysinh'];
     $diachi = $_POST['diachi'];
     $sodienthoai = $_POST['sodienthoai'];
+    $email = $_POST['email'];
     $pass = $_POST['pass'];
     $photo=$_FILES['image']['name'];
-    $upload="images/".$photo;
+    $upload="uploads/".$photo;
     $id_pb = $_POST['id_pb'];
     $id_bp = $_POST['id_bp'];
 
-    $query = "INSERT INTO taikhoannhanvien (MaNhanVien, TenNhanVien, GioiTinh, NgaySinh , DiaChi , SoDienThoai, Email, Anh, MatKhau, MaPhongBan, MaBoPhan) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $query = "INSERT INTO taikhoannhanvien (MaNhanVien, TenNhanVien, GioiTinh, NgaySinh , DiaChi , SoDienThoai, Email, 
+    MatKhau, Anh, MaPhongBan, MaBoPhan) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("sssssssssss", $id, $name, $gioitinh, $ngaysinh, $diachi, $sodienthoai, $email, $upload, $pass, $id_pb, $id_bp);
+    $stmt->bind_param("sssssssssss", $id, $name, $gioitinh, $ngaysinh, $diachi, $sodienthoai, $email, $pass, $upload, $id_pb, $id_bp);
     $stmt->execute();
     move_uploaded_file($_FILES['image']['tmp_name'], $upload);
     $_SESSION['response'] = "Thêm Dữ Liệu Thành Công!";
@@ -61,27 +66,50 @@ if (isset($_GET['edit'])) {
     $result = $stmt->get_result();
     $row = $result->fetch_assoc();
 
-    $id = $row['MaTaiKhoan'];
-    $username = $row['TenDangNhap'];
+    $id = $row['MaNhanVien'];
+    $name = $row['TenNhanVien'];
+    $gioitinh = $row['GioiTinh'];
+    $ngaysinh = $row['NgaySinh'];
+    $diachi = $row['DiaChi'];
+    $sodienthoai = $row['SoDienThoai'];
+    $email = $row['Email'];
     $pass = $row['MatKhau'];
-    $typeuser = $row['LoaiTaiKhoan'];
-    
+    $photo= $row['Anh'];
+    $id_pb = $row['MaPhongBan'];
+    $id_bp = $row['MaBoPhan'];
 
     $update = true;
 }
 
 if (isset($_POST['update'])) {
     $id = $_POST['id'];
-    $username = $_POST['username'];
+    $name = $_POST['name'];
+    $gioitinh = $_POST['gioitinh'];
+    $ngaysinh = $_POST['ngaysinh'];
+    $diachi = $_POST['diachi'];
+    $sodienthoai = $_POST['sodienthoai'];
+    $email = $_POST['email'];
     $pass = $_POST['pass'];
-    $typeuser = $_POST['typeuser'];
+    $oldimage=$_POST['oldimage'];
+    $id_pb = $_POST['id_pb'];
+    $id_bp = $_POST['id_bp'];
 
-    $query = "UPDATE taikhoan SET TenDangNhap=?, MatKhau=?, LoaiTaiKhoan=? WHERE MaTaiKhoan=?";
+    if(isset($_FILES['image']['name'])&&($_FILES['image']['name']!="")){
+        $newimage="uploads/".$_FILES['image']['name'];
+        unlink($oldimage);
+        move_uploaded_file($_FILES['image']['tmp_name'], $newimage);
+    }
+    else{
+        $newimage=$oldimage;
+    }
+
+    $query = "UPDATE taikhoannhanvien SET TenNhanVien=?, GioiTinh=?, NgaySinh=?, DiaChi=?, SoDienThoai=?, Email=?, 
+    MatKhau=?, Anh=?, MaPhongBan=?, MaBoPhan=? WHERE MaNhanVien=?";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("ssss", $username, $pass, $typeuser, $id);
+    $stmt->bind_param("sssssssssss", $name, $gioitinh, $ngaysinh, $diachi, $sodienthoai, $email, $pass, $newimage, $id_pb, $id_bp, $id);
     $stmt->execute();
 
     $_SESSION['response'] = "Cập Nhật Thành Công!";
     $_SESSION['res_type'] = "primary";
-    header('location: taikhoan.php');
+    header('location: taikhoan_nhanvien.php');
 }
