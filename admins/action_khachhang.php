@@ -1,75 +1,92 @@
 <?php
-session_start();
-include "config.php";
+    session_start();
+    include "config.php";
+    mysqli_set_charset($conn, 'utf8mb4');
 
-mysqli_set_charset($conn, 'utf8mb4');
-$id = "";
-$username = "";
-$pass = "";
-$typeuser = "";
+    $id="";
+    $name="";
+    $gioitinh = "";
+    $ngaysinh="";
+    $diachi="";
+    $sodienthoai="";
+    $email="";
+    $pass="";
 
-
-$update = false;
+    $update=false;
 
 if (isset($_POST['add'])) {
+
     $id = $_POST['id'];
-    $username = $_POST['username'];
+    $name = $_POST['name'];
+    $gioitinh = $_POST['gioitinh'];
+    $ngaysinh = $_POST['ngaysinh'];
+    $diachi = $_POST['diachi'];
+    $sodienthoai = $_POST['sodienthoai'];
+    $email = $_POST['email'];
     $pass = $_POST['pass'];
-    $typeuser = $_POST['typeuser'];
 
-    $query = "INSERT INTO taikhoan (MaTaiKhoan, TenDangNhap, MatKhau, LoaiTaiKhoan) VALUES (?, ?, ?, ?)";
+    $query = "INSERT INTO taikhoankhachhang (MaKhachHang, TenKhachHang, GioiTinh, NgaySinh , DiaChi , SoDienThoai, Email, 
+    MatKhau) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("ssss", $id, $username, $pass, $typeuser);
+    $stmt->bind_param("ssssssss", $id, $name, $gioitinh, $ngaysinh, $diachi, $sodienthoai, $email, $pass);
     $stmt->execute();
-
     $_SESSION['response'] = "Thêm Dữ Liệu Thành Công!";
     $_SESSION['res_type'] = "success";
-    header('location: taikhoan.php');
+    header('location: taikhoan_khachhang.php');
 }
 
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
 
-    $query = "DELETE FROM taikhoan WHERE MaTaiKhoan=?";
+    $query = "DELETE FROM taikhoankhachhang WHERE MaKhachHang=?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("s", $id);
     $stmt->execute();
 
     $_SESSION['response'] = "Xoá Dữ Liệu Thành Công!";
     $_SESSION['res_type'] = "danger";
-    header('location: taikhoan.php');
+    header('location: taikhoan_khachhang.php');
 }
 
 if (isset($_GET['edit'])) {
     $id = $_GET['edit'];
 
-    $query = "SELECT * FROM taikhoan WHERE MaTaiKhoan=?";
+    $query = "SELECT * FROM taikhoankhachhang WHERE MaKhachHang=?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("s", $id);
     $stmt->execute();
     $result = $stmt->get_result();
     $row = $result->fetch_assoc();
 
-    $id = $row['MaTaiKhoan'];
-    $username = $row['TenDangNhap'];
+    $id = $row['MaKhachHang'];
+    $name = $row['TenKhachHang'];
+    $gioitinh = $row['GioiTinh'];
+    $ngaysinh = $row['NgaySinh'];
+    $diachi = $row['DiaChi'];
+    $sodienthoai = $row['SoDienThoai'];
+    $email = $row['Email'];
     $pass = $row['MatKhau'];
-    $typeuser = $row['LoaiTaiKhoan'];
 
     $update = true;
 }
 
 if (isset($_POST['update'])) {
     $id = $_POST['id'];
-    $username = $_POST['username'];
+    $name = $_POST['name'];
+    $gioitinh = $_POST['gioitinh'];
+    $ngaysinh = $_POST['ngaysinh'];
+    $diachi = $_POST['diachi'];
+    $sodienthoai = $_POST['sodienthoai'];
+    $email = $_POST['email'];
     $pass = $_POST['pass'];
-    $typeuser = $_POST['typeuser'];
 
-    $query = "UPDATE taikhoan SET TenDangNhap=?, MatKhau=?, LoaiTaiKhoan=? WHERE MaTaiKhoan=?";
+    $query = "UPDATE taikhoankhachhang SET TenKhachHang=?, GioiTinh=?, NgaySinh=?, DiaChi=?, SoDienThoai=?, Email=?, 
+    MatKhau=? WHERE MaKhachHang=?";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("ssss", $username, $pass, $typeuser, $id);
+    $stmt->bind_param("ssssssss", $name, $gioitinh, $ngaysinh, $diachi, $sodienthoai, $email, $pass, $id);
     $stmt->execute();
 
     $_SESSION['response'] = "Cập Nhật Thành Công!";
     $_SESSION['res_type'] = "primary";
-    header('location: taikhoan.php');
+    header('location: taikhoan_khachhang.php');
 }
