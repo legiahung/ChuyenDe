@@ -61,7 +61,7 @@ if (isset($_GET['edit'])) {
     $row = $result->fetch_assoc();
 
     $id = $row['MaSanPham'];
-    $name = $row['TenSanPham '];
+    $name = $row['TenSanPham'];
     $id_lts = $row['MaLoaiTrangSuc'];
     $giaban = $row['GiaBan'];
     $id_ncc = $row['MaNhaCungCap'];
@@ -94,7 +94,7 @@ if (isset($_POST['update'])) {
     $query = "UPDATE sanpham SET TenSanPham=?, MaLoaiTrangSuc=?, GiaBan=?, MaNhaCungCap=?, MoTa=?, Anh=?, 
     SoLuong=? WHERE MaSanPham=?";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("sssssssssss", $id_lts, $giaban, $id_ncc, $mota, $sodienthoai, $newimage, $soluong, $id);
+    $stmt->bind_param("ssssssss",$name ,$id_lts, $giaban, $id_ncc, $mota, $newimage, $soluong, $id);
     $stmt->execute();
 
     $_SESSION['response'] = "Cập Nhật Thành Công!";
