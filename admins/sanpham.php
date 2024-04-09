@@ -87,7 +87,7 @@ include 'action_sanpham.php';
                             <?php if ($id == true) { ?>
                                 <input type="submit" name="update" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded" value="Cập nhập">
                             <?php } else { ?>
-                                <input type="submit" name="add" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" value="Thêm tài khoản">
+                                <input type="submit" name="add" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" value="Thêm Sản Phẩm">
                             <?php } ?>
                         </div>
                     </form>
@@ -127,7 +127,7 @@ include 'action_sanpham.php';
                                         <td><img src="<?= $row['Anh']; ?>" width="120" class="rounded-lg mt-2"></td>
                                         <td class="border px-6 py-3"><?= $row['TenSanPham']; ?></td>
                                         <td class="border px-6 py-3"><?= $row['TenLoaiTrangSuc']; ?></td>
-                                        <td class="border px-6 py-3"><?= $row['GiaBan']; ?></td>
+                                        <td class="border px-6 py-3"><?= $row['GiaBan']; ?> ₫</td>
                                         <td class="border px-6 py-3"><?= $row['TenNhaCungCap']; ?></td>
                                         <td class="border px-6 py-3"><?= $row['MoTa']; ?></td>
                                         <td class="border px-6 py-3"><?= $row['SoLuong']; ?></td>
