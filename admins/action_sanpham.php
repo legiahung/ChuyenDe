@@ -10,6 +10,8 @@
     $id_ncc ="";
     $mota ="";
     $photo="";
+    $photo2="";
+    $photo3="";
     $soluong = "";
 
     $update=false;
@@ -23,13 +25,17 @@ if (isset($_POST['add'])) {
     $id_ncc = $_POST['id_ncc'];
     $mota = $_POST['mota'];
     $photo=$_FILES['image']['name'];
+    $photo2=$_FILES['image2']['name'];
+    $photo3=$_FILES['image3']['name'];
     $upload="uploads/".$photo;
+    $upload2="uploads/".$photo2;
+    $upload3="uploads/".$photo3;
     $soluong = $_POST['soluong'];
 
     $query = "INSERT INTO sanpham (MaSanPham, TenSanPham, MaLoaiTrangSuc, GiaBan , MaNhaCungCap , MoTa,
-    Anh, SoLuong) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    Anh, Anh2, Anh3, SoLuong) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("ssssssss", $id, $name, $id_lts, $giaban, $id_ncc, $mota, $upload, $soluong);
+    $stmt->bind_param("ssssssssss", $id, $name, $id_lts, $giaban, $id_ncc, $mota, $upload, $upload2, $upload3, $soluong);
     $stmt->execute();
     move_uploaded_file($_FILES['image']['tmp_name'], $upload);
     $_SESSION['response'] = "Thêm Dữ Liệu Thành Công!";
@@ -67,6 +73,8 @@ if (isset($_GET['edit'])) {
     $id_ncc = $row['MaNhaCungCap'];
     $mota = $row['MoTa'];
     $photo= $row['Anh'];
+    $photo2= $row['Anh2'];
+    $photo3= $row['Anh3'];
     $soluong = $row['SoLuong'];
 
     $update = true;
@@ -80,6 +88,8 @@ if (isset($_POST['update'])) {
     $id_ncc = $_POST['id_ncc'];
     $mota = $_POST['mota'];
     $oldimage=$_POST['oldimage'];
+    $oldimage2=$_POST['oldimage2'];
+    $oldimage3=$_POST['oldimage3'];
     $soluong = $_POST['soluong'];
 
     if(isset($_FILES['image']['name'])&&($_FILES['image']['name']!="")){
@@ -90,11 +100,27 @@ if (isset($_POST['update'])) {
     else{
         $newimage=$oldimage;
     }
+    if(isset($_FILES['image2']['name'])&&($_FILES['image2']['name']!="")){
+        $newimage2="uploads/".$_FILES['image2']['name'];
+        unlink($oldimage2);
+        move_uploaded_file($_FILES['image']['tmp_name'], $newimage2);
+    }
+    else{
+        $newimage2=$oldimage2;
+    }
+    if(isset($_FILES['image3']['name'])&&($_FILES['image3']['name']!="")){
+        $newimage3="uploads/".$_FILES['image3']['name'];
+        unlink($oldimage3);
+        move_uploaded_file($_FILES['image3']['tmp_name'], $newimage3);
+    }
+    else{
+        $newimage3=$oldimage3;
+    }
 
-    $query = "UPDATE sanpham SET TenSanPham=?, MaLoaiTrangSuc=?, GiaBan=?, MaNhaCungCap=?, MoTa=?, Anh=?, 
+    $query = "UPDATE sanpham SET TenSanPham=?, MaLoaiTrangSuc=?, GiaBan=?, MaNhaCungCap=?, MoTa=?, Anh=?, Anh2=?, Anh3=?, 
     SoLuong=? WHERE MaSanPham=?";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("ssssssss",$name ,$id_lts, $giaban, $id_ncc, $mota, $newimage, $soluong, $id);
+    $stmt->bind_param("ssssssssss",$name ,$id_lts, $giaban, $id_ncc, $mota, $newimage, $newimage2, $newimage3, $soluong, $id);
     $stmt->execute();
 
     $_SESSION['response'] = "Cập Nhật Thành Công!";

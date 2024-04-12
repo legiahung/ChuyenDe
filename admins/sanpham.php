@@ -84,6 +84,16 @@ include 'action_sanpham.php';
                             <img src="<?= $photo; ?>" width="120" class="rounded-lg mt-2">
                         </div>
                         <div class="mb-4">
+                            <input type="hidden" name="oldimage2" value="<?= $photo2; ?>">
+                            <input type="file" name="image2" class="border rounded-lg px-4 py-2 w-full">
+                            <img src="<?= $photo2; ?>" width="120" class="rounded-lg mt-2">
+                        </div>
+                        <div class="mb-4">
+                            <input type="hidden" name="oldimage3" value="<?= $photo3; ?>">
+                            <input type="file" name="image3" class="border rounded-lg px-4 py-2 w-full">
+                            <img src="<?= $photo3; ?>" width="120" class="rounded-lg mt-2">
+                        </div>
+                        <div class="mb-4">
                             <?php if ($id == true) { ?>
                                 <input type="submit" name="update" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded" value="Cập nhập">
                             <?php } else { ?>
@@ -99,7 +109,8 @@ include 'action_sanpham.php';
                     $query = 'SELECT u.*, lts.TenLoaiTrangSuc, ncc.TenNhaCungCap  
                     FROM sanpham u
                     JOIN loaitrangsuc lts ON u.MaLoaiTrangSuc = lts.MaLoaiTrangSuc
-                    JOIN nhacungcap ncc ON u.MaNhaCungCap = ncc.MaNhaCungCap';
+                    JOIN nhacungcap ncc ON u.MaNhaCungCap = ncc.MaNhaCungCap
+                    ORDER BY lts.TenLoaiTrangSuc';
                     $stmt = $conn->prepare($query);
                     $stmt->execute();
                     $result = $stmt->get_result();
@@ -111,6 +122,8 @@ include 'action_sanpham.php';
                                 <tr>
                                     <th class="px-6 py-3">Mã Sản Phẩm</th>
                                     <th class="px-6 py-3">Ảnh</th>
+                                    <th class="px-6 py-3">Ảnh2</th>
+                                    <th class="px-6 py-3">Ảnh3</th>
                                     <th class="px-6 py-3">Tên Sản Phẩm</th>
                                     <th class="px-6 py-3">Tên Loại Trang Sức</th>
                                     <th class="px-6 py-3">Giá Bán</th>
@@ -124,7 +137,9 @@ include 'action_sanpham.php';
                                 <?php while ($row = $result->fetch_assoc()) { ?>
                                     <tr class="bg-white hover:bg-gray-100 transition duration-300">
                                         <td class="border px-6 py-3"><?= $row['MaSanPham']; ?></td>
-                                        <td><img src="<?= $row['Anh']; ?>" width="120" class="rounded-lg mt-2"></td>
+                                        <td><img src="<?= $row['Anh']; ?>" class="rounded-lg mt-2"></td>
+                                        <td><img src="<?= $row['Anh2']; ?>" class="rounded-lg mt-2"></td>
+                                        <td><img src="<?= $row['Anh3']; ?>" class="rounded-lg mt-2"></td>
                                         <td class="border px-6 py-3"><?= $row['TenSanPham']; ?></td>
                                         <td class="border px-6 py-3"><?= $row['TenLoaiTrangSuc']; ?></td>
                                         <td class="border px-6 py-3"><?= $row['GiaBan']; ?> ₫</td>
