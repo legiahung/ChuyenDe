@@ -49,8 +49,8 @@ include 'action_sanpham.php';
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
                             </svg>
                             <svg width="2" height="2" viewBox="0 0 2 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="1.76447" height="1.76447" rx="0.693037" transform="matrix(0.736046 -0.725592 0.736046 0.725592 -0.298764 0.985712)" fill="#2196F3"/>
-</svg>
+                                <rect width="1.76447" height="1.76447" rx="0.693037" transform="matrix(0.736046 -0.725592 0.736046 0.725592 -0.298764 0.985712)" fill="#2196F3" />
+                            </svg>
 
                         </span>
                         <span class="ml-2 text-sm tracking-wide truncate">Dashboard</span>
@@ -59,9 +59,9 @@ include 'action_sanpham.php';
                 <li>
                     <a href="#" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
                         <span class="inline-flex justify-center items-center ml-4">
-                        <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="8.46944" height="8.46944" rx="1.38607" transform="matrix(0.718252 -0.70805 0.718252 0.70805 -0.583082 5.4219)" fill="#2196F3"/>
-</svg>
+                            <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="8.46944" height="8.46944" rx="1.38607" transform="matrix(0.718252 -0.70805 0.718252 0.70805 -0.583082 5.4219)" fill="#2196F3" />
+                            </svg>
 
 
 
@@ -72,9 +72,9 @@ include 'action_sanpham.php';
                 <li>
                     <a href="#" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
                         <span class="inline-flex justify-center items-center ml-4">
-                        <svg width="27" height="24" viewBox="0 0 27 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M22.3575 14.8764C24.9224 14.8764 26.9999 16.9189 26.9999 19.4389C26.9999 21.9574 24.9224 23.9999 22.3575 23.9999C19.794 23.9999 17.715 21.9574 17.715 19.4389C17.715 16.9189 19.794 14.8764 22.3575 14.8764ZM10.9124 17.4932C12.0359 17.4932 12.9479 18.3892 12.9479 19.493C12.9479 20.5953 12.0359 21.4928 10.9124 21.4928H2.03548C0.911992 21.4928 0 20.5953 0 19.493C0 18.3892 0.911992 17.4932 2.03548 17.4932H10.9124ZM4.64246 0C7.20744 0 9.28492 2.04252 9.28492 4.56104C9.28492 7.08104 7.20744 9.12356 4.64246 9.12356C2.07898 9.12356 0 7.08104 0 4.56104C0 2.04252 2.07898 0 4.64246 0ZM24.9659 2.56273C26.0879 2.56273 26.9999 3.45873 26.9999 4.56104C26.9999 5.66483 26.0879 6.56083 24.9659 6.56083H16.089C14.9655 6.56083 14.0535 5.66483 14.0535 4.56104C14.0535 3.45873 14.9655 2.56273 16.089 2.56273H24.9659Z" fill="#EFF2F4"/>
-</svg>
+                            <svg width="27" height="24" viewBox="0 0 27 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22.3575 14.8764C24.9224 14.8764 26.9999 16.9189 26.9999 19.4389C26.9999 21.9574 24.9224 23.9999 22.3575 23.9999C19.794 23.9999 17.715 21.9574 17.715 19.4389C17.715 16.9189 19.794 14.8764 22.3575 14.8764ZM10.9124 17.4932C12.0359 17.4932 12.9479 18.3892 12.9479 19.493C12.9479 20.5953 12.0359 21.4928 10.9124 21.4928H2.03548C0.911992 21.4928 0 20.5953 0 19.493C0 18.3892 0.911992 17.4932 2.03548 17.4932H10.9124ZM4.64246 0C7.20744 0 9.28492 2.04252 9.28492 4.56104C9.28492 7.08104 7.20744 9.12356 4.64246 9.12356C2.07898 9.12356 0 7.08104 0 4.56104C0 2.04252 2.07898 0 4.64246 0ZM24.9659 2.56273C26.0879 2.56273 26.9999 3.45873 26.9999 4.56104C26.9999 5.66483 26.0879 6.56083 24.9659 6.56083H16.089C14.9655 6.56083 14.0535 5.66483 14.0535 4.56104C14.0535 3.45873 14.9655 2.56273 16.089 2.56273H24.9659Z" fill="#EFF2F4" />
+                            </svg>
 
                         </span>
                         <span class="ml-2 text-sm tracking-wide truncate">Messages</span>
@@ -95,16 +95,71 @@ include 'action_sanpham.php';
                         <div class="text-sm font-light tracking-wide text-gray-400 uppercase">Settings</div>
                     </div>
                 </li>
-                <li>
-                    <a href="#" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
-                        <span class="inline-flex justify-center items-center ml-4">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                            </svg>
-                        </span>
-                        <span class="ml-2 text-sm tracking-wide truncate">Profile</span>
-                    </a>
-                </li>
+                <li class="relative">
+  <!-- Nút chính của dropdown -->
+  <button
+    class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 focus:outline-none focus:bg-graydark dark:focus:bg-meta-4"
+    @click="toggleDropdown"
+  >
+    <span>Forms</span>
+    <!-- Mũi tên chỉ xuống -->
+    <svg
+      class="w-4 h-4 transition-transform duration-300 ease-in-out transform group-hover:rotate-180"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M19 9l-7 7-7-7"
+      />
+    </svg>
+  </button>
+
+  <!-- Dropdown Menu -->
+  <ul
+    class="absolute top-full left-0 z-10 hidden bg-white shadow-md rounded-md py-1 w-36"
+    x-show="isOpen"
+    @click.away="isOpen = false"
+  >
+    <li>
+      <a
+        href="form-elements.html"
+        class="block px-4 py-2 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white"
+        :class="{ 'text-white': page === 'formElements' }"
+        >Form Elements</a
+      >
+    </li>
+    <li>
+      <a
+        href="pro-form-elements.html"
+        class="block px-4 py-2 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white"
+        :class="{ 'text-white': page === 'proFormElements' }"
+        >Pro Form Elements</a
+      >
+    </li>
+    <li>
+      <a
+        href="form-layout.html"
+        class="block px-4 py-2 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white"
+        :class="{ 'text-white': page === 'formLayout' }"
+        >Form Layout</a
+      >
+    </li>
+    <li>
+      <a
+        href="pro-form-layout.html"
+        class="block px-4 py-2 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white"
+        :class="{ 'text-white': page === 'proFormLayout' }"
+        >Pro Form Layout</a
+      >
+    </li>
+  </ul>
+</li>
+
+
                 <li>
                     <a href="taikhoan_khachhang.php" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
                         <span class="inline-flex justify-center items-center ml-4">
