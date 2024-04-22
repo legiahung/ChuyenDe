@@ -23,9 +23,9 @@ include 'action_sanpham.php';
         <div class="w-full px-2">
             <div class="flex flex-col items-center w-full mt-3 border-t border-gray-50">
                 <a class="flex items-center w-full h-12 px-3 mt-2 rounded-lg hover:bg-indigo-700" href="taikhoan_khachhang.php">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Zm6-10.125a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm1.294 6.336a6.721 6.721 0 0 1-3.17.789 6.721 6.721 0 0 1-3.168-.789 3.376 3.376 0 0 1 6.338 0Z" />
-                </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Zm6-10.125a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm1.294 6.336a6.721 6.721 0 0 1-3.17.789 6.721 6.721 0 0 1-3.168-.789 3.376 3.376 0 0 1 6.338 0Z" />
+                    </svg>
 
                     <span class="ml-2 text-sm font-bold">Thông Tin Khách Hàng</span>
                 </a>
@@ -53,9 +53,9 @@ include 'action_sanpham.php';
             </div>
             <div class="flex flex-col items-center w-full mt-2 border-t border-gray-50">
                 <button type="button" class="flex items-center w-full h-12 px-3 mt-2 rounded-lg hover:bg-indigo-700" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-                </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                    </svg>
                     <span class="flex-1 ml-2 text-sm font-bold text-left whitespace-nowrap" sidebar-toggle-item>Sản Phẩm</span>
                     <svg sidebar-toggle-item class="w-6 h-6 text-indigo-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
@@ -73,13 +73,12 @@ include 'action_sanpham.php';
                     </li>
                 </ul>
                 <a class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-indigo-700" href="#">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
-                </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
+                    </svg>
                     <span class="ml-2 text-sm font-bold">Quản Lý Đơn Hàng</span>
                 </a>
             </div>
-
         </div>
         <a class="flex items-center justify-center w-full h-16 mt-auto bg-indigo-800 hover:bg-indigo-700" href="">
             <svg class="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -177,63 +176,65 @@ include 'action_sanpham.php';
                 </div>
 
                 <div>
-                    <!-- Danh sách sản phẩm -->
-                    <div>
-                        <?php
-                        // Truy vấn danh sách sản phẩm
-                        $query = 'SELECT u.*, lts.TenLoaiTrangSuc, ncc.TenNhaCungCap  
-                                FROM sanpham u
-                                JOIN loaitrangsuc lts ON u.MaLoaiTrangSuc = lts.MaLoaiTrangSuc
-                                JOIN nhacungcap ncc ON u.MaNhaCungCap = ncc.MaNhaCungCap
-                                ORDER BY lts.TenLoaiTrangSuc';
-                        $stmt = $conn->prepare($query);
-                        $stmt->execute();
-                        $result = $stmt->get_result();
-                        ?>
-                        <!-- Bảng danh sách sản phẩm -->
-                        <div class="account-list max-h-500 overflow-y-scroll w-900">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th class="px-6 py-3">Mã Sản Phẩm</th>
-                                        <th class="px-6 py-3">Ảnh</th>
-                                        <th class="px-6 py-3">Ảnh2</th>
-                                        <th class="px-6 py-3">Ảnh3</th>
-                                        <th class="px-6 py-3">Tên Sản Phẩm</th>
-                                        <th class="px-6 py-3">Tên Loại Trang Sức</th>
-                                        <th class="px-6 py-3">Giá Bán</th>
-                                        <th class="px-6 py-3">Tên Nhà Cung Cấp</th>
-                                        <th class="px-6 py-3">Mô Tả</th>
-                                        <th class="px-6 py-3">Số Lượng</th>
-                                        <th class="px-6 py-3">Thao tác</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php while ($row = $result->fetch_assoc()) { ?>
-                                        <tr class="bg-white hover:bg-gray-100 transition duration-300">
-                                            <td class="border px-6 py-3"><?= $row['MaSanPham']; ?></td>
-                                            <td><img src="<?= $row['Anh']; ?>" class="rounded-lg mt-2"></td>
-                                            <td><img src="<?= $row['Anh2']; ?>" class="rounded-lg mt-2"></td>
-                                            <td><img src="<?= $row['Anh3']; ?>" class="rounded-lg mt-2"></td>
-                                            <td class="border px-6 py-3"><?= $row['TenSanPham']; ?></td>
-                                            <td class="border px-6 py-3"><?= $row['TenLoaiTrangSuc']; ?></td>
-                                            <td class="border px-6 py-3"><?= $row['GiaBan']; ?> ₫</td>
-                                            <td class="border px-6 py-3"><?= $row['TenNhaCungCap']; ?></td>
-                                            <td class="border px-6 py-3"><?= $row['MoTa']; ?></td>
-                                            <td class="border px-6 py-3"><?= $row['SoLuong']; ?></td>
-                                            <td class="border px-6 py-3">
-                                                <div class="flex flex-col">
-                                                    <a href="action_sanpham.php?delete=<?= $row['MaSanPham']; ?>" onclick="return confirm('Bạn có chắc là muốn xóa?');" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded mb-2 text-sm">Xóa</a>
-                                                    <a href="sanpham.php?edit=<?= $row['MaSanPham']; ?>" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded text-sm">Chỉnh sửa</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    <?php } ?>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+    <!-- Danh sách sản phẩm -->
+    <div>
+        <?php
+        // Truy vấn danh sách sản phẩm
+        $query = 'SELECT u.*, lts.TenLoaiTrangSuc, ncc.TenNhaCungCap  
+                FROM sanpham u
+                JOIN loaitrangsuc lts ON u.MaLoaiTrangSuc = lts.MaLoaiTrangSuc
+                JOIN nhacungcap ncc ON u.MaNhaCungCap = ncc.MaNhaCungCap
+                ORDER BY lts.TenLoaiTrangSuc';
+        $stmt = $conn->prepare($query);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        ?>
+        <!-- Bảng danh sách sản phẩm -->
+        <div class="account-list max-h-400 overflow-y-scroll w-900">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="px-6 py-3">Mã Sản Phẩm</th>
+                        <th class="px-6 py-3">Ảnh</th>
+                        <th class="px-6 py-3">Ảnh2</th>
+                        <th class="px-6 py-3">Ảnh3</th>
+                        <th class="px-6 py-3">Tên Sản Phẩm</th>
+                        <th class="px-6 py-3">Tên Loại Trang Sức</th>
+                        <th class="px-6 py-3">Giá Bán</th>
+                        <th class="px-6 py-3">Tên Nhà Cung Cấp</th>
+                        <th class="px-6 py-3">Mô Tả</th>
+                        <th class="px-6 py-3">Số Lượng</th>
+                        <th class="px-6 py-3">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while ($row = $result->fetch_assoc()) { ?>
+                        <tr class="bg-white hover:bg-gray-100 transition duration-300">
+                            <td class="border px-6 py-3"><?= $row['MaSanPham']; ?></td>
+                            <td><img src="<?= $row['Anh']; ?>" class="rounded-lg mt-2"></td>
+                            <td><img src="<?= $row['Anh2']; ?>" class="rounded-lg mt-2"></td>
+                            <td><img src="<?= $row['Anh3']; ?>" class="rounded-lg mt-2"></td>
+                            <td class="border px-6 py-3"><?= $row['TenSanPham']; ?></td>
+                            <td class="border px-6 py-3"><?= $row['TenLoaiTrangSuc']; ?></td>
+                            <td class="border px-6 py-3"><?= $row['GiaBan']; ?> ₫</td>
+                            <td class="border px-6 py-3"><?= $row['TenNhaCungCap']; ?></td>
+                            <td class="border px-6 py-3"><?= $row['MoTa']; ?></td>
+                            <td class="border px-6 py-3"><?= $row['SoLuong']; ?></td>
+                            <td class="border px-6 py-3">
+                                <div class="flex flex-col">
+                                <a href="sanpham.php?edit=<?= $row['MaSanPham']; ?>" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded text-sm mb-2">Chỉnh sửa</a>
+                                    <a href="action_sanpham.php?delete=<?= $row['MaSanPham']; ?>" onclick="return confirm('Bạn có chắc là muốn xóa?');" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded mb-2 text-sm ">Xóa</a>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
             </div>
         </div>
     </div>
