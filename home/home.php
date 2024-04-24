@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jewelry Website</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="uploads/logo2.png" class="w-10 h-10" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Lora&family=Martel:wght@300;400;700&family=Bastiken&display=swap');
     .font-bastiken {
@@ -24,7 +25,7 @@
     <div class="flex items-center justify-between max-w-6xl mx-auto">
       <!-- Logo and Navigation -->
       <div class="flex items-center">
-        <h1 class="text-4xl font-bold text-black mr-8 font-bastiken">JEWELS</h1>
+        <h1 class="text-4xl font-bold text-black mr-8 font-bastiken">KIM CHUNG</h1>
         <nav>
           <ul class="flex space-x-6">
             <li><a href="#" class="text-lg text-black hover:text-gray-700">Home</a></li>
@@ -167,6 +168,8 @@
   </div>
 </section>
 <!-- End of About Us Section -->
-
+<div>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M168.5 72L256 165l87.5-93h-175zM383.9 99.1L311.5 176h129L383.9 99.1zm50 124.9H256 78.1L256 420.3 433.9 224zM71.5 176h129L128.1 99.1 71.5 176zm434.3 40.1l-232 256c-4.5 5-11 7.9-17.8 7.9s-13.2-2.9-17.8-7.9l-232-256c-7.7-8.5-8.3-21.2-1.5-30.4l112-152c4.5-6.1 11.7-9.8 19.3-9.8H376c7.6 0 14.8 3.6 19.3 9.8l112 152c6.8 9.2 6.1 21.9-1.5 30.4z"/></svg>
+</div>
 </body>
 </html>
