@@ -9,6 +9,7 @@ include 'action_sanpham.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản Lý Sản Phẩm</title>
+    <link rel="icon" href="uploads/icon-logo.jpg" class="w-48 h-48" />
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
