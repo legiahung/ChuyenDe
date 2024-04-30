@@ -38,7 +38,6 @@
           </a>
         </div>
       </div>
-
     </div>
     <div id="nav-bottom" class="max-w-screen-xl px-1 py-3 mx-auto">
       <button id="navbar-toggle" data-collapse-toggle="navbar-dropdown" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-900 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none" aria-controls="navbar-dropdown" aria-expanded="false">
@@ -48,13 +47,13 @@
         </svg>
       </button>
       <div class="items-center hidden w-full md:block md:w-auto" id="navbar-dropdown">
-        <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border-t-4 border-pink-200 md:flex-row md:space-x-8 md:mt-0">
+        <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border-t-4 border-yellow-300 md:flex-row md:space-x-8 md:mt-0">
           <li class="mr-4">
-            <a href="#" class="block py-2 pl-3 pr-4 text-gray-900 font-semibold border-b-2 border-transparent hover:border-pink-200">Trang Chủ</a>
+            <a href="#" class="block py-2 pl-3 pr-4 text-gray-900 font-semibold border-b-2 border-transparent hover:border-yellow-300">Trang Chủ</a>
 
           </li>
           <li class="relative group">
-            <button id="dropdownNavbarLink" class="flex items-center justify-between w-full py-2 pl-3 pr-4 font-semibold border-b-2 border-transparent hover:border-pink-200">
+            <button id="dropdownNavbarLink" class="flex items-center justify-between w-full py-2 pl-3 pr-4 font-semibold border-b-2 border-transparent hover:border-yellow-300">
               Trang Sức
               <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
@@ -82,16 +81,64 @@
             </div>
           </li>
           <li class="mr-4">
-            <a href="" class="block py-2 pl-3 pr-4 text-gray-900 font-semibold border-b-2 border-transparent hover:border-pink-200">Đổi Tiền Tệ</a>
+            <a href="" class="block py-2 pl-3 pr-4 text-gray-900 font-semibold border-b-2 border-transparent hover:border-yellow-300">Đổi Tiền Tệ</a>
           </li>
           <li class="mr-4">
-            <a href="" class="block py-2 pl-3 pr-4 text-gray-900 font-semibold border-b-2 border-transparent hover:border-pink-200">Giá Vàng Hiện Nay</a>
+            <a href="" class="block py-2 pl-3 pr-4 text-gray-900 font-semibold border-b-2 border-transparent hover:border-yellow-300">Giá Vàng Hiện Nay</a>
           </li>
         </ul>
       </div>
     </div>
-
   </nav>
+  <div class="flex flex-col md:flex-row items-center md:items-start py-5 px-10">
+    <div class="md:w-1/3 md:pt-20 text-center">
+      <h3 class="text-xl md:text-2xl ">XEM NGAY BỘ SƯU TẬP</h3>
+    </div>
+    <div class="w-full md:w-2/3 mt-5 md:mt-0">
+      <div class="flex flex-wrap justify-center md:justify-around">
+        <div class="border p-4">
+          <a href="#">
+            <img class="card-img-top w-32 h-32 object-cover rounded-full mx-auto mb-2" src="uploads/sp1.jpg" alt="">
+            <div class="text-center">
+              <span class="underline-offset-4 border-b-2 border-yellow-300">Hoa Tai</span>
+            </div>
+          </a>
+        </div>
+        <div class="border p-4">
+          <a href="#">
+            <img class="w-32 h-32 object-cover rounded-full mx-auto mb-2" src="uploads/sp1.jpg" alt="">
+            <div class="text-center">
+              <span class="underline-offset-4 border-b-2 border-yellow-300">Charm</span>
+            </div>
+          </a>
+        </div>
+        <div class="border p-4">
+          <a href="#">
+            <img class="w-32 h-32 object-cover rounded-full mx-auto mb-2" src="uploads/sp1.jpg" alt="">
+            <div class="text-center">
+              <span class="underline-offset-4 border-b-2 border-yellow-300">Dây Chuyền</span>
+            </div>
+          </a>
+        </div>
+        <div class="border p-4">
+          <a href="#">
+            <img class="w-32 h-32 object-cover rounded-full mx-auto mb-2" src="uploads/sp1.jpg" alt="">
+            <div class="text-center">
+              <span class="underline-offset-4 border-b-2 border-yellow-300">Nhẫn</span>
+            </div>
+          </a>
+        </div>
+        <div class="border p-4">
+          <a href="#">
+            <img class="w-32 h-32 object-cover rounded-full mx-auto mb-2" src="uploads/sp1.jpg" alt="">
+            <div class="text-center">
+              <span class="underline-offset-4 border-b-2 border-yellow-300">Vòng Tay</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const button = document.getElementById('navbar-toggle');
