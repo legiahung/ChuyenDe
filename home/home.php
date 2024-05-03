@@ -59,7 +59,7 @@
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
               </svg>
             </button>
-            <!-- Dropdown menu -->
+
             <div id="dropdownNavbar" class="absolute z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-lg w-44">
               <ul class="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
                 <li>
@@ -81,10 +81,10 @@
             </div>
           </li>
           <li class="mr-4">
-            <a href="" class="block py-2 pl-3 pr-4 text-gray-900 font-semibold border-b-2 border-transparent hover:border-yellow-300">Đổi Tiền Tệ</a>
+            <a href="doitien.php" class="block py-2 pl-3 pr-4 text-gray-900 font-semibold border-b-2 border-transparent hover:border-yellow-300">Đổi Tiền Tệ</a>
           </li>
           <li class="mr-4">
-            <a href="" class="block py-2 pl-3 pr-4 text-gray-900 font-semibold border-b-2 border-transparent hover:border-yellow-300">Giá Vàng Hiện Nay</a>
+            <a href="giavang.php" class="block py-2 pl-3 pr-4 text-gray-900 font-semibold border-b-2 border-transparent hover:border-yellow-300">Giá Vàng Hiện Nay</a>
           </li>
         </ul>
       </div>
@@ -92,80 +92,89 @@
   </nav>
   <div class="flex flex-col md:flex-row items-center md:items-start py-5 px-10">
     <div class="md:w-1/3 md:pt-20 text-center">
-      <h3 class="text-xl md:text-2xl ">XEM NGAY BỘ SƯU TẬP</h3>
+      <h3 class="text-xl font-bold md:text-2xl ">XEM NGAY BỘ SƯU TẬP</h3>
     </div>
     <div class="w-full md:w-2/3 mt-5 md:mt-0">
       <div class="flex flex-wrap justify-center md:justify-around">
-        <div class="border p-4">
+        <div class="border-2 p-4">
           <a href="#">
-            <img class="card-img-top w-32 h-32 object-cover rounded-full mx-auto mb-2" src="uploads/sp1.jpg" alt="">
+            <img class="card-img-top w-32 h-32 object-cover rounded-full mx-auto mb-2" src="uploads/theme-hoatai.jpg" alt="">
             <div class="text-center">
-              <span class="underline-offset-4 border-b-2 border-yellow-300">Hoa Tai</span>
+              <span class="underline-offset-4 border-b-2 border-yellow-500 font-medium">Hoa Tai</span>
             </div>
           </a>
         </div>
-        <div class="border p-4">
+        <div class="border-2 p-4">
           <a href="#">
-            <img class="w-32 h-32 object-cover rounded-full mx-auto mb-2" src="uploads/sp1.jpg" alt="">
+            <img class="w-32 h-32 object-cover rounded-full mx-auto mb-2" src="uploads/theme-charm.jpg" alt="">
             <div class="text-center">
-              <span class="underline-offset-4 border-b-2 border-yellow-300">Charm</span>
+              <span class="underline-offset-4 border-b-2 border-yellow-500 font-medium">Charm</span>
             </div>
           </a>
         </div>
-        <div class="border p-4">
+        <div class="border-2 p-4">
           <a href="#">
-            <img class="w-32 h-32 object-cover rounded-full mx-auto mb-2" src="uploads/sp1.jpg" alt="">
+            <img class="w-32 h-32 object-cover rounded-full mx-auto mb-2" src="uploads/theme-daychuyen.jpg" alt="">
             <div class="text-center">
-              <span class="underline-offset-4 border-b-2 border-yellow-300">Dây Chuyền</span>
+              <span class="underline-offset-4 border-b-2 border-yellow-400 font-medium">Dây Chuyền</span>
             </div>
           </a>
         </div>
-        <div class="border p-4">
+        <div class="border-2 p-4">
           <a href="#">
-            <img class="w-32 h-32 object-cover rounded-full mx-auto mb-2" src="uploads/sp1.jpg" alt="">
+            <img class="w-32 h-32 object-cover rounded-full mx-auto mb-2" src="uploads/theme-nhan.jpg" alt="">
             <div class="text-center">
-              <span class="underline-offset-4 border-b-2 border-yellow-300">Nhẫn</span>
+              <span class="underline-offset-4 border-b-2 border-yellow-400 font-medium">Nhẫn</span>
             </div>
           </a>
         </div>
-        <div class="border p-4">
+        <div class="border-2 p-4">
           <a href="#">
-            <img class="w-32 h-32 object-cover rounded-full mx-auto mb-2" src="uploads/sp1.jpg" alt="">
+            <img class="w-32 h-32 object-cover rounded-full mx-auto mb-2" src="uploads/theme-vongtay.jpg" alt="">
             <div class="text-center">
-              <span class="underline-offset-4 border-b-2 border-yellow-300">Vòng Tay</span>
+              <span class="underline-offset-4 border-b-2 border-yellow-400 font-medium">Vòng Tay</span>
             </div>
           </a>
         </div>
       </div>
     </div>
   </div>
+  <div>
+    <!-- hãy viết code vào đây cho phần carousel -->
+  </div>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      const button = document.getElementById('navbar-toggle');
-      const menu = document.getElementById('navbar-dropdown');
+    const button = document.getElementById('navbar-toggle');
+    const menu = document.getElementById('navbar-dropdown');
 
-      const dropdownButton = document.getElementById('dropdownNavbarLink');
-      const dropdownMenu = document.getElementById('dropdownNavbar');
+    const dropdownButton = document.getElementById('dropdownNavbarLink');
+    const dropdownMenu = document.getElementById('dropdownNavbar');
 
-      dropdownButton.addEventListener('mouseenter', () => {
-        dropdownMenu.classList.remove('hidden');
-      });
+    if (dropdownButton && dropdownMenu) {
+        dropdownButton.addEventListener('mouseenter', () => {
+            dropdownMenu.classList.remove('hidden');
+        });
 
-      dropdownButton.addEventListener('mouseleave', () => {
-        dropdownMenu.classList.add('hidden');
-      });
+        dropdownButton.addEventListener('mouseleave', () => {
+            dropdownMenu.classList.add('hidden');
+        });
 
-      dropdownMenu.addEventListener('mouseenter', () => {
-        dropdownMenu.classList.remove('hidden');
-      });
+        dropdownMenu.addEventListener('mouseenter', () => {
+            dropdownMenu.classList.remove('hidden');
+        });
 
-      dropdownMenu.addEventListener('mouseleave', () => {
-        dropdownMenu.classList.add('hidden');
-      });
-      button.addEventListener('click', function() {
-        menu.classList.toggle('hidden');
-      });
-    });
+        dropdownMenu.addEventListener('mouseleave', () => {
+            dropdownMenu.classList.add('hidden');
+        });
+    }
+
+    if (button && menu) {
+        button.addEventListener('click', function() {
+            menu.classList.toggle('hidden');
+        });
+    }
+});
+
   </script>
 
 </body>
