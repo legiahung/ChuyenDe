@@ -38,12 +38,18 @@
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
     }
-    include "config.php";
+    include "../config.php";
+    
+    function formatCurrencyVND($number)
+    {
+        $formattedNumber = number_format($number, 0, '.', ',') . ' VND';
+        return $formattedNumber;
+    }
     ?>
     <nav>
         <div id="nav-top" class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
-            <a href="<?php echo 'home.php'; ?>" class="flex items-center space-x-1 ">
-                <img src="uploads/icon-logo.jpg" class="h-8" alt="Logo" />
+            <a href="<?php echo '../home/home.php'; ?>" class="flex items-center space-x-1 ">
+                <img src="../home/uploads/icon-logo.jpg" class="h-8" alt="Logo" />
                 <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Tiệm Vàng Kim Chung</span>
             </a>
             <div class="flex items-center justify-between">
@@ -56,14 +62,38 @@
                     </button>
                 </div>
                 <div class="flex items-center">
-                    <a href="#" class="mx-4">
+                    <a href="javascript:void(0);" onclick="loginAction()" class="mx-4">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                         </svg>
+                        <script>
+                            function loginAction() {
+                                <?php
+                                if (isset($_SESSION['TenKhachHang']) || isset($_SESSION['TenNhanVien'])) {
+                                    // Nếu đã đăng nhập thành công, chuyển hướng người dùng đến trang xem chi tiết sản phẩm
+                                    echo "window.location.href = '../home/thongtin.php';";
+                                } else {
+                                    // Nếu chưa đăng nhập hoặc đăng nhập thất bại, chuyển hướng người dùng đến trang đăng nhập
+                                    echo "window.location.href = '../authentication/dangnhap.php';";
+                                }
+                                ?>
+                            }
+                        </script>
                     </a>
-                    <a href="#" class="mx-4">
+                    <a href="../home/giohang.php" class="mx-4">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                            <?php
+                            if (isset($_SESSION["MaKhachHang"])) {
+
+                                $query = "SELECT COUNT(MaSanPham) AS SoLuong FROM giohang WHERE MaKhachHang = '{$_SESSION['MaKhachHang']}'";
+                                $result = mysqli_query($conn, $query);
+                                $row = mysqli_fetch_assoc($result);
+                                $_SESSION['SLGH'] = $row['SoLuong'];
+                                $_SESSION['SLGH'] == "" ? 0 : $_SESSION['SLGH'];
+                                echo '<span class="notify" id="CartCount">' . $_SESSION['SLGH'] . '</span>';
+                            }
+                            ?>
                         </svg>
                     </a>
                 </div>
@@ -79,7 +109,7 @@
             <div class="items-center hidden w-full md:block md:w-auto" id="navbar-dropdown">
                 <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border-t-4 border-yellow-300 md:flex-row md:space-x-8 md:mt-0">
                     <li class="mr-4">
-                        <a href="<?php echo 'home.php'; ?>" class="block py-2 pl-3 pr-4 text-gray-900 font-semibold border-b-2 border-transparent hover:border-yellow-300">Trang Chủ</a>
+                        <a href="<?php echo '../home/home.php'; ?>" class="block py-2 pl-3 pr-4 text-gray-900 font-semibold border-b-2 border-transparent hover:border-yellow-300">Trang Chủ</a>
 
                     </li>
                     <li class="relative group">
@@ -93,28 +123,28 @@
                         <div id="dropdownNavbar" class="absolute z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-lg w-44">
                             <ul class="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
                                 <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 font-semibold">Hoa Tai</a>
+                                    <a href="../home/hoatai.php" class="block px-4 py-2 hover:bg-gray-100 font-semibold">Hoa Tai</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 font-semibold">Charm</a>
+                                    <a href="../home/charm.php" class="block px-4 py-2 hover:bg-gray-100 font-semibold">Charm</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 font-semibold">Dây Chuyền</a>
+                                    <a href="../home/daychuyen.php" class="block px-4 py-2 hover:bg-gray-100 font-semibold">Dây Chuyền</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 font-semibold">Nhẫn</a>
+                                    <a href="../home/nhan.php" class="block px-4 py-2 hover:bg-gray-100 font-semibold">Nhẫn</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 font-semibold">Vòng Tay</a>
+                                    <a href="../home/vongtay.php" class="block px-4 py-2 hover:bg-gray-100 font-semibold">Vòng Tay</a>
                                 </li>
                             </ul>
                         </div>
                     </li>
                     <li class="mr-4">
-                        <a href="doitien.php" class="block py-2 pl-3 pr-4 text-gray-900 font-semibold border-b-2 border-transparent hover:border-yellow-300">Đổi Tiền Tệ</a>
+                        <a href="../home/doitien.php" class="block py-2 pl-3 pr-4 text-gray-900 font-semibold border-b-2 border-transparent hover:border-yellow-300">Đổi Tiền Tệ</a>
                     </li>
                     <li class="mr-4">
-                        <a href="giavang.php" class="block py-2 pl-3 pr-4 text-gray-900 font-semibold border-b-2 border-transparent hover:border-yellow-300">Giá Vàng Hiện Nay</a>
+                        <a href="../home/giavang.php" class="block py-2 pl-3 pr-4 text-gray-900 font-semibold border-b-2 border-transparent hover:border-yellow-300">Giá Vàng Hiện Nay</a>
                     </li>
                 </ul>
             </div>

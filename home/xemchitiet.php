@@ -1,6 +1,7 @@
 <title>Chi tiết sản phẩm</title>
 <?php
 include 'header.php';
+
 if (isset($_GET["MaSanPham"])) {
     $productId = $_GET["MaSanPham"];
 }
@@ -32,11 +33,11 @@ $result = mysqli_query(
                             </div>
                         </div>
                     </div>
-                    <div class="w-full md:w-1/2 px-4">
+                    <div class="w-full md:w-1/2 px-4 pl-20">
                         <h2 class="text-3xl font-semibold mb-4"><?php echo $row['TenSanPham']; ?></h2>
                         <dl>
                             <div class="flex mb-2">
-                                <dt class="w-1/3">Tên Loại Trang Sức</dt>
+                                <dt class="w-1/3">Loại Trang Sức</dt>
                                 <dd class="w-2/3"><?php echo $row['TenLoaiTrangSuc']; ?></dd>
                             </div>
                             <div class="flex mb-2">
@@ -49,9 +50,41 @@ $result = mysqli_query(
                             </div>
                         </dl>
                         <div class="flex items-center mt-4">
-                            <button id="button-minus" class="bg-gray-300 px-3 py-1 rounded-md mr-2">-</button>
-                            <input id="ipQuantity" type="text" class="w-16 text-center border border-gray-300" value="1" readonly="readonly">
-                            <button id="button-plus" class="bg-gray-300 px-3 py-1 rounded-md ml-2">+</button>
+                            <button id="button-minus" class="bg-pink-300 hover:bg-pink-400 text-white px-3 py-1 rounded-full mr-2">-</button>
+                            <input id="ipQuantity" type="text" class="w-16 text-center border border-pink-300" value="1" readonly="readonly">
+                            <button id="button-plus" class="bg-pink-300 hover:bg-pink-400 text-white px-3 py-1 rounded-full ml-2">+</button>
+                            <script>
+                                var inputQuantity = document.getElementById("ipQuantity");
+                                var buttonPlus = document.getElementById("button-plus");
+                                var minValue = 1;
+                                var maxValue = <?php echo $row['SoLuong']; ?> - 1;
+
+                                buttonPlus.addEventListener("click", function() {
+                                    var value = parseInt(inputQuantity.value);
+
+                                    if (value < maxValue) {
+                                        inputQuantity.value = value;
+                                    }
+
+                                    checkValue();
+                                });
+
+                                function checkValue() {
+                                    var value = parseInt(inputQuantity.value);
+
+                                    if (isNaN(value) || value <= maxValue) {
+                                        buttonPlus.disabled = false;
+                                    } else if (value > maxValue) {
+                                        buttonPlus.disabled = false;
+                                        inputQuantity.value = maxValue;
+                                    } else {
+                                        buttonPlus.disabled = true;
+                                    }
+                                }
+
+                                checkValue();
+                            </script>
+
                         </div>
                         <div class="mt-4">
                             <button id="addtocart" class="bg-gray-900 hover:bg-yellow-600 text-white px-4 py-2 rounded-md">
@@ -63,10 +96,10 @@ $result = mysqli_query(
                 </div>
             </div>
         </section>
-        <section class="bg-gray-200 py-8">
+        <section class="bg-yellow-200 py-8">
             <div class="container mx-auto">
-                <div class="text-xl font-semibold mb-4">Mô tả sản phẩm</div>
-                <p><?php echo $row['TenNhaCungCap']; ?></p>
+                <div class="text-3xl font-semibold mb-4">Mô tả sản phẩm</div>
+                <p>Nhà Cung Cấp: <?php echo $row['TenNhaCungCap']; ?></p>
                 <p><?php echo $row['MoTa']; ?></p>
             </div>
         </section>
@@ -112,7 +145,7 @@ $result = mysqli_query(
             var soluong = $('#ipQuantity').val(); // Lấy số lượng từ input
 
             $.ajax({
-                url: 'ThemVaoGioHang.php', // URL của phương thức "ThemVaoGioHang" trong controller
+                url: 'themvaogiohang.php', // URL của phương thức "ThemVaoGioHang" trong controller
                 type: 'POST',
                 data: {
                     MaSanPham: masanpham,
