@@ -4,10 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="uploads/icon-logo.jpg" class="w-48 h-48" />
+    <link rel="icon" href="../home/uploads/icon-logo.jpg" class="w-48 h-48" />
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <style>
         .swiper-wrapper {
             width: 100%;
@@ -29,6 +31,7 @@
         .hover-trigger:hover img:last-child {
             opacity: 1;
         }
+
     </style>
 </head>
 
@@ -39,7 +42,6 @@
         session_start();
     }
     include "../config.php";
-    
     function formatCurrencyVND($number)
     {
         $formattedNumber = number_format($number, 0, '.', ',') . ' VND';
@@ -62,40 +64,33 @@
                     </button>
                 </div>
                 <div class="flex items-center">
-                    <a href="javascript:void(0);" onclick="loginAction()" class="mx-4">
+                    <a href="../authentication/dangnhap.php" onclick="loginAction()" class="mx-4">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                         </svg>
-                        <script>
-                            function loginAction() {
-                                <?php
-                                if (isset($_SESSION['TenKhachHang']) || isset($_SESSION['TenNhanVien'])) {
-                                    // Nếu đã đăng nhập thành công, chuyển hướng người dùng đến trang xem chi tiết sản phẩm
-                                    echo "window.location.href = '../home/thongtin.php';";
-                                } else {
-                                    // Nếu chưa đăng nhập hoặc đăng nhập thất bại, chuyển hướng người dùng đến trang đăng nhập
-                                    echo "window.location.href = '../authentication/dangnhap.php';";
-                                }
-                                ?>
-                            }
-                        </script>
                     </a>
-                    <a href="../home/giohang.php" class="mx-4">
+                    <a href="../home/thongtin.php" onclick="loginAction()" class="mx-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                        </svg>
+
+                    </a>
+                    <a href="../home/giohang.php" class="relative mx-4">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-                            <?php
-                            if (isset($_SESSION["MaKhachHang"])) {
-
-                                $query = "SELECT COUNT(MaSanPham) AS SoLuong FROM giohang WHERE MaKhachHang = '{$_SESSION['MaKhachHang']}'";
-                                $result = mysqli_query($conn, $query);
-                                $row = mysqli_fetch_assoc($result);
-                                $_SESSION['SLGH'] = $row['SoLuong'];
-                                $_SESSION['SLGH'] == "" ? 0 : $_SESSION['SLGH'];
-                                echo '<span class="notify" id="CartCount">' . $_SESSION['SLGH'] . '</span>';
-                            }
-                            ?>
                         </svg>
+                        <?php
+                        if (isset($_SESSION["MaKhachHang"])) {
+                            $query = "SELECT COUNT(MaGioHang) AS SoLuong FROM giohang WHERE MaKhachHang = '{$_SESSION['MaKhachHang']}'";
+                            $result = mysqli_query($conn, $query);
+                            $row = mysqli_fetch_assoc($result);
+                            $_SESSION['SLGH'] = $row['SoLuong'];
+                            $_SESSION['SLGH'] == "" ? 0 : $_SESSION['SLGH'];
+                            echo '<span class="notify absolute top-0 right-0 bg-red-600 text-white rounded-full px-1.5 py-0.5 text-xs" id="CartCount">' . $_SESSION['SLGH'] . '</span>';
+                        }
+                        ?>
                     </a>
+
                 </div>
             </div>
         </div>
@@ -145,6 +140,9 @@
                     </li>
                     <li class="mr-4">
                         <a href="../home/giavang.php" class="block py-2 pl-3 pr-4 text-gray-900 font-semibold border-b-2 border-transparent hover:border-yellow-300">Giá Vàng Hiện Nay</a>
+                    </li>
+                    <li class="mr-4">
+                        <a href="../home/giavangfull.php" class="block py-2 pl-3 pr-4 text-gray-900 font-semibold border-b-2 border-transparent hover:border-yellow-300">Tổng Hợp Tỉ Giá Vàng</a>
                     </li>
                 </ul>
             </div>

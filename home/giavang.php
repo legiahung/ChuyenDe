@@ -86,6 +86,9 @@
                     <li class="mr-4">
                         <a href="giavang.php" class="block py-2 pl-3 pr-4 text-gray-900 font-semibold border-b-2 border-transparent hover:border-yellow-300">Giá Vàng Hiện Nay</a>
                     </li>
+                    <li class="mr-4">
+                        <a href="giavangfull.php" class="block py-2 pl-3 pr-4 text-gray-900 font-semibold border-b-2 border-transparent hover:border-yellow-300">Giá Vàng Hiện Nay</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -138,6 +141,4 @@
             </tbody>
         </table>
     </div>
-</body>
-
-</html>
+    <?php include '../home/footer.php'; ?>

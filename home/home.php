@@ -104,7 +104,7 @@
               <div class="swiper-slide  ">
                 <div class="max-w-sm mx-auto relative">
                   <div class="text-center items-center">
-                    <a href="xemchitiet.php?MaSanPham=<?= $productId ?>" class="hover-trigger relative block">
+                    <a href="xemchitiet.php?id=<?= $productId ?>" class="hover-trigger relative block">
                       <img src="<?= $productImage ?>" class="object-contain w-96 h-52" alt="<?= $productTitle ?>">
                       <div class="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-300">
                         <img src="<?= $productImage2 ?>" class="object-contain w-96 h-52" alt="<?= $productTitle ?>">
@@ -112,10 +112,10 @@
                     </a>
                   </div>
                   <div class="text-center items-center">
-                    <h3 class="truncate text-sm"><a href="xemchitiet.php?MaSanPham=<?= $productId ?>"><?= $productTitle ?></a></h3>
+                    <h3 class="truncate text-sm"><a href="xemchitiet.php?id=<?= $productId ?>"><?= $productTitle ?></a></h3>
                     <p><?= number_format($productPrice, 0, '.', ',') ?> đ</p>
                     <div>
-                      <a href="xemchitiet.php?MaSanPham=<?= $productId ?>" class="inline-block px-4 py-2 bg-gray-900 hover:bg-yellow-600 text-white rounded">Mua Ngay</a>
+                      <a href="xemchitiet.php?id=<?= $productId ?>" class="inline-block px-4 py-2 bg-gray-900 hover:bg-yellow-600 text-white rounded">Mua Ngay</a>
                     </div>
                   </div>
                 </div>
@@ -154,7 +154,7 @@
             <div class="md:flex md:flex-row md:justify-center w-full md:w-1/5">
               <div class="max-w-sm mx-auto relative">
                 <div class="text-center items-center">
-                  <a href="xemchitiet.php?MaSanPham=<?= $productId ?>" class="hover-trigger relative block">
+                  <a href="xemchitiet.php?id=<?= $productId ?>" class="hover-trigger relative block">
                     <img src="<?= $productImage ?>" class="object-contain w-96 h-52" alt="<?= $productTitle ?>">
                     <div class="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-300">
                       <img src="<?= $productImage2 ?>" class="object-contain w-96 h-52" alt="<?= $productTitle ?>">
@@ -162,10 +162,10 @@
                   </a>
                 </div>
                 <div class="text-center items-center">
-                  <h3 class="truncate text-sm"><a href="xemchitiet.php?MaSanPham=<?= $productId ?>"><?= $productTitle ?></a></h3>
+                  <h3 class="truncate text-sm"><a href="xemchitiet.php?id=<?= $productId ?>"><?= $productTitle ?></a></h3>
                   <p><?= number_format($productPrice, 0, '.', ',') ?> đ</p>
                   <div>
-                    <a href="xemchitiet.php?MaSanPham=<?= $productId ?>" class="inline-block px-4 py-2 bg-gray-900 hover:bg-yellow-600 text-white rounded">Mua Ngay</a>
+                    <a href="xemchitiet.php?id=<?= $productId ?>" class="inline-block px-4 py-2 bg-gray-900 hover:bg-yellow-600 text-white rounded">Mua Ngay</a>
                   </div>
                 </div>
               </div>
@@ -202,7 +202,7 @@
             <div class="md:flex md:flex-row md:justify-center w-full md:w-1/5">
               <div class="max-w-sm mx-auto relative">
                 <div class="text-center items-center">
-                  <a href="xemchitiet.php?MaSanPham=<?= $productId ?>" class="hover-trigger relative block">
+                  <a href="xemchitiet.php?id=<?= $productId ?>" class="hover-trigger relative block">
                     <img src="<?= $productImage ?>" class="object-contain w-96 h-52" alt="<?= $productTitle ?>">
                     <div class="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-300">
                       <img src="<?= $productImage2 ?>" class="object-contain w-96 h-52" alt="<?= $productTitle ?>">
@@ -210,10 +210,10 @@
                   </a>
                 </div>
                 <div class="text-center items-center">
-                  <h3 class="truncate text-sm"><a href="xemchitiet.php?MaSanPham=<?= $productId ?>"><?= $productTitle ?></a></h3>
+                  <h3 class="truncate text-sm"><a href="xemchitiet.php?id=<?= $productId ?>"><?= $productTitle ?></a></h3>
                   <p><?= number_format($productPrice, 0, '.', ',') ?> đ</p>
                   <div>
-                    <a href="xemchitiet.php?MaSanPham=<?= $productId ?>" class="inline-block px-4 py-2 bg-gray-900 hover:bg-yellow-600 text-white rounded shadow ">Mua Ngay</a>
+                    <a href="xemchitiet.php?id=<?= $productId ?>" class="inline-block px-4 py-2 bg-gray-900 hover:bg-yellow-600 text-white rounded shadow ">Mua Ngay</a>
                   </div>
                 </div>
               </div>
@@ -250,7 +250,7 @@
             <div class="md:flex md:flex-row md:justify-center w-full md:w-1/5">
               <div class="max-w-sm mx-auto relative">
                 <div class="text-center items-center">
-                  <a href="xemchitiet.php?MaSanPham=<?= $productId ?>" class="hover-trigger relative block">
+                  <a href="xemchitiet.php?id=<?= $productId ?>" class="hover-trigger relative block">
                     <img src="<?= $productImage ?>" class="object-contain w-96 h-52" alt="<?= $productTitle ?>">
                     <div class="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-300">
                       <img src="<?= $productImage2 ?>" class="object-contain w-96 h-52" alt="<?= $productTitle ?>">
@@ -258,10 +258,10 @@
                   </a>
                 </div>
                 <div class="text-center items-center">
-                  <h3 class="truncate text-sm"><a href="xemchitiet.php?MaSanPham=<?= $productId ?>"><?= $productTitle ?></a></h3>
+                  <h3 class="truncate text-sm"><a href="xemchitiet.php?id=<?= $productId ?>"><?= $productTitle ?></a></h3>
                   <p><?= number_format($productPrice, 0, '.', ',') ?> đ</p>
                   <div>
-                    <a href="xemchitiet.php?MaSanPham=<?= $productId ?>" class="inline-block px-4 py-2 bg-gray-900 hover:bg-yellow-600 text-white rounded shadow ">Mua Ngay</a>
+                    <a href="xemchitiet.php?id=<?= $productId ?>" class="inline-block px-4 py-2 bg-gray-900 hover:bg-yellow-600 text-white rounded shadow ">Mua Ngay</a>
                   </div>
                 </div>
               </div>
@@ -298,7 +298,7 @@
             <div class="md:flex md:flex-row md:justify-center w-full md:w-1/5">
               <div class="max-w-sm mx-auto relative">
                 <div class="text-center items-center">
-                  <a href="xemchitiet.php?MaSanPham=<?= $productId ?>" class="hover-trigger relative block">
+                  <a href="xemchitiet.php?id=<?= $productId ?>" class="hover-trigger relative block">
                     <img src="<?= $productImage ?>" class="object-contain w-96 h-52" alt="<?= $productTitle ?>">
                     <div class="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-300">
                       <img src="<?= $productImage2 ?>" class="object-contain w-96 h-52" alt="<?= $productTitle ?>">
@@ -306,10 +306,10 @@
                   </a>
                 </div>
                 <div class="text-center items-center">
-                  <h3 class="truncate text-sm"><a href="xemchitiet.php?MaSanPham=<?= $productId ?>"><?= $productTitle ?></a></h3>
+                  <h3 class="truncate text-sm"><a href="xemchitiet.php?id=<?= $productId ?>"><?= $productTitle ?></a></h3>
                   <p><?= number_format($productPrice, 0, '.', ',') ?> đ</p>
                   <div>
-                    <a href="xemchitiet.php?MaSanPham=<?= $productId ?>" class="inline-block px-4 py-2 bg-gray-900 hover:bg-yellow-600 text-white rounded shadow ">Mua Ngay</a>
+                    <a href="xemchitiet.php?id=<?= $productId ?>" class="inline-block px-4 py-2 bg-gray-900 hover:bg-yellow-600 text-white rounded shadow ">Mua Ngay</a>
                   </div>
                 </div>
               </div>
@@ -346,7 +346,7 @@
             <div class="md:flex md:flex-row md:justify-center w-full md:w-1/5">
               <div class="max-w-sm mx-auto relative">
                 <div class="text-center items-center">
-                  <a href="xemchitiet.php?MaSanPham=<?= $productId ?>" class="hover-trigger relative block">
+                  <a href="xemchitiet.php?id=<?= $productId ?>" class="hover-trigger relative block">
                     <img src="<?= $productImage ?>" class="object-contain w-96 h-52" alt="<?= $productTitle ?>">
                     <div class="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-300">
                       <img src="<?= $productImage2 ?>" class="object-contain w-96 h-52" alt="<?= $productTitle ?>">
@@ -354,10 +354,10 @@
                   </a>
                 </div>
                 <div class="text-center items-center">
-                  <h3 class="truncate text-sm"><a href="xemchitiet.php?MaSanPham=<?= $productId ?>"><?= $productTitle ?></a></h3>
+                  <h3 class="truncate text-sm"><a href="xemchitiet.php?id=<?= $productId ?>"><?= $productTitle ?></a></h3>
                   <p><?= number_format($productPrice, 0, '.', ',') ?> đ</p>
                   <div>
-                    <a href="xemchitiet.php?MaSanPham=<?= $productId ?>" class="inline-block px-4 py-2 bg-gray-900 hover:bg-yellow-600 text-white rounded shadow ">Mua Ngay</a>
+                    <a href="xemchitiet.php?id=<?= $productId ?>" class="inline-block px-4 py-2 bg-gray-900 hover:bg-yellow-600 text-white rounded shadow ">Mua Ngay</a>
                   </div>
                 </div>
               </div>

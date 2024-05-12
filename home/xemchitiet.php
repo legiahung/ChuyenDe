@@ -1,19 +1,18 @@
 <title>Chi tiết sản phẩm</title>
 <?php
 include 'header.php';
-
-if (isset($_GET["MaSanPham"])) {
-    $productId = $_GET["MaSanPham"];
+$id = "";
+if (isset($_GET["id"])) {
+    $id = $_GET["id"];
 }
 $result = mysqli_query(
     $conn,
     "SELECT * FROM sanpham 
     JOIN nhacungcap ON sanpham.MaNhaCungCap = nhacungcap.MaNhaCungCap
     JOIN loaitrangsuc ON sanpham.MaLoaiTrangSuc = loaitrangsuc.MaLoaiTrangSuc
-    WHERE MaSanPham = '$productId'
+    WHERE MaSanPham = '$id'
     LIMIT 1"
 );
-
 ?>
 
 <?php if (mysqli_num_rows($result) <> 0) : ?>
@@ -87,9 +86,9 @@ $result = mysqli_query(
 
                         </div>
                         <div class="mt-4">
-                            <button id="addtocart" class="bg-gray-900 hover:bg-yellow-600 text-white px-4 py-2 rounded-md">
-                                <i class="fas fa-shopping-cart"></i>
+                            <button id="addtocart" class="bg-gray-900 hover:bg-yellow-600 text-white px-4 py-2 rounded-md " onclick="addToCart('<?php echo $id; ?>')">
                                 <span class="ml-2">Thêm vào giỏ hàng</span>
+
                             </button>
                         </div>
                     </div>
@@ -139,38 +138,35 @@ $result = mysqli_query(
             input.value = 1;
         }
     });
-    $(function() {
-        $("#addtocart").click(function() {
-            var masanpham = '<?php echo $productId ?>'; // Lấy mã sản phẩm 
-            var soluong = $('#ipQuantity').val(); // Lấy số lượng từ input
 
-            $.ajax({
-                url: 'themvaogiohang.php', // URL của phương thức "ThemVaoGioHang" trong controller
-                type: 'POST',
-                data: {
-                    MaSanPham: masanpham,
-                    SoLuong: soluong
-                }, // Truyền dữ liệu masp và soluong
-                success: function(response) {
+    function addToCart(productId) {
+    // Lấy số lượng từ input
+    var quantity = document.getElementById('ipQuantity').value;
 
-                    var result = JSON.parse(response);
-
-                    if (result.success) {
-                        $("#CartCount").text(result.slgh);
-                        showSuccessToast("Đã thêm sản phẩm vào giỏ hàng");
-                    } else {
-                        alert("Không thể thêm vào giỏ hàng!");
-                    }
-                },
-                error: function() {
-
-                    alert("Có lỗi xảy ra khi thêm vào giỏ hàng!");
+    // Send Ajax request to add product to cart
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'themvaogiohang.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                const response = JSON.parse(xhr.responseText);
+                if (response.success) {
+                    // Update cart quantity
+                    document.getElementById('CartCount').textContent = response.slgh;
+                    alert("Đã thêm sản phẩm vào giỏ hàng thành công!");
+                    location.reload();
+                } else {
+                    alert("Không thể thêm vào giỏ hàng!");
                 }
-            });
-
-            return false;
-        });
-    });
+            } else {
+                alert("Có lỗi xảy ra khi thêm vào giỏ hàng!");
+            }
+        }
+    };
+    xhr.send('MaSanPham=' + encodeURIComponent(productId) + '&SoLuong=' + encodeURIComponent(quantity));
+}
+    
 </script>
 
 <?php include 'footer.php' ?>

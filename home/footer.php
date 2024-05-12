@@ -2,7 +2,7 @@
 <footer class="bg-yellow-900 rounded-lg">
     <div class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
       <div class="flex justify-center text-yellow-400">
-        <img src="uploads/icon-logo.jpg" class="h-10" alt="Logo" />
+        <img src="../home/uploads/icon-logo.jpg" class="h-10" alt="Logo" />
         <span class="self-center text-3xl font-semibold whitespace-nowrap dark:text-white pl-1">Tiệm Vàng Kim Chung</span>
       </div>
 

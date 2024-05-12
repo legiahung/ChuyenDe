@@ -1,18 +1,19 @@
 <?php
-    session_start();
-    include "config.php";
-    mysqli_set_charset($conn, 'utf8mb4');
+session_start();
+include "config.php";
+mysqli_set_charset($conn, 'utf8mb4');
 
-    $id="";
-    $name="";
-    $gioitinh = "";
-    $ngaysinh="";
-    $diachi="";
-    $sodienthoai="";
-    $email="";
-    $pass="";
 
-    $update=false;
+$id="";
+$name="";
+$gioitinh = "";
+$ngaysinh="";
+$diachi="";
+$sodienthoai="";
+$email="";
+$pass="";
+
+$update=false;
 
 if (isset($_POST['add'])) {
 
@@ -25,10 +26,13 @@ if (isset($_POST['add'])) {
     $email = $_POST['email'];
     $pass = $_POST['pass'];
 
+    // Mã hóa mật khẩu trước khi lưu vào cơ sở dữ liệu
+    $pass_hash = password_hash($pass, PASSWORD_DEFAULT);
+
     $query = "INSERT INTO taikhoankhachhang (MaKhachHang, TenKhachHang, GioiTinh, NgaySinh , DiaChi , SoDienThoai, Email, 
     MatKhau) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("ssssssss", $id, $name, $gioitinh, $ngaysinh, $diachi, $sodienthoai, $email, $pass);
+    $stmt->bind_param("ssssssss", $id, $name, $gioitinh, $ngaysinh, $diachi, $sodienthoai, $email, $pass_hash);
     $stmt->execute();
     $_SESSION['response'] = "Thêm Dữ Liệu Thành Công!";
     $_SESSION['res_type'] = "success";
@@ -80,13 +84,17 @@ if (isset($_POST['update'])) {
     $email = $_POST['email'];
     $pass = $_POST['pass'];
 
+    // Mã hóa mật khẩu trước khi cập nhật vào cơ sở dữ liệu
+    $pass_hash = password_hash($pass, PASSWORD_DEFAULT);
+
     $query = "UPDATE taikhoankhachhang SET TenKhachHang=?, GioiTinh=?, NgaySinh=?, DiaChi=?, SoDienThoai=?, Email=?, 
     MatKhau=? WHERE MaKhachHang=?";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("ssssssss", $name, $gioitinh, $ngaysinh, $diachi, $sodienthoai, $email, $pass, $id);
+    $stmt->bind_param("ssssssss", $name, $gioitinh, $ngaysinh, $diachi, $sodienthoai, $email, $pass_hash, $id);
     $stmt->execute();
 
     $_SESSION['response'] = "Cập Nhật Thành Công!";
     $_SESSION['res_type'] = "primary";
     header('location: taikhoan_khachhang.php');
 }
+?>

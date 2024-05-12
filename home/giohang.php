@@ -1,51 +1,44 @@
 <?php
 include("../home/logIn_required.php");
+include("../config.php");
+
+// Kiểm tra đăng nhập
 if (!isset($_SESSION['MaKhachHang'])) {
     header("Location: ../authentication/dangnhap.php");
     exit();
 }
+
 include '../home/header.php';
 
-// Kiểm tra xem có yêu cầu xóa sản phẩm không
+// Xử lý yêu cầu xóa sản phẩm
 if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['masp'])) {
-    include("../home/logIn_required.php");
-    include("../config.php");
-
-    // Lấy mã sản phẩm và mã khách hàng từ yêu cầu
     $masp = $_GET['masp'];
-    $makh = $_SESSION['MaKhachHang']; // Lấy mã khách hàng từ session
+    $makh = $_SESSION['MaKhachHang'];
 
-    // Sử dụng truy vấn tham số hóa để tránh SQL Injection
     $deleteQuery = "DELETE FROM giohang WHERE MaSanPham = ? AND MaKhachHang = ?";
     $deleteStmt = mysqli_prepare($conn, $deleteQuery);
 
-    // Kiểm tra xem truy vấn đã được chuẩn bị thành công hay không
     if ($deleteStmt) {
-        // Gán giá trị cho các tham số và thực thi truy vấn
         mysqli_stmt_bind_param($deleteStmt, "ss", $masp, $makh);
         if (mysqli_stmt_execute($deleteStmt)) {
-            // Lấy số hàng bị ảnh hưởng bởi truy vấn DELETE
             $rowsAffected = mysqli_stmt_affected_rows($deleteStmt);
             if ($rowsAffected > 0) {
-                // Nếu có ít nhất một hàng bị xóa thành công, cập nhật số lượng sản phẩm trong giỏ hàng
                 $_SESSION['SLGH'] -= $rowsAffected;
             }
         } else {
-            // Nếu xóa không thành công, có thể xử lý thông báo lỗi tại đây
+            // Xử lý lỗi một cách cẩn thận, có thể ghi nhật ký hoặc hiển thị thông báo lỗi cho người dùng
             echo "Xóa sản phẩm không thành công: " . mysqli_error($conn);
         }
     }
 
-    // Giải phóng tài nguyên
     mysqli_stmt_close($deleteStmt);
 
-    // Bổ sung điều kiện để gửi sự thay đổi của SLGH
     if (isset($_SESSION["MaKhachHang"])) {
         echo '<script>document.getElementById("CartCount").innerHTML = ' . $_SESSION['SLGH'] . ';</script>';
     }
 }
 
-// Thực hiện truy vấn SELECT để lấy dữ liệu giỏ hàng mới
+// Lấy dữ liệu giỏ hàng
 $result = mysqli_query($conn, "SELECT giohang.*, sanpham.*, loaitrangsuc.*, giohang.SoLuong as SLGH, sanpham.GiaBan as DGSP, sanpham.SoLuong as SLSP
                             FROM giohang
                             JOIN sanpham ON giohang.MaSanPham = sanpham.MaSanPham 
@@ -121,13 +114,15 @@ $result = mysqli_query($conn, "SELECT giohang.*, sanpham.*, loaitrangsuc.*, gioh
                             </tbody>
                         </table>
                     <?php endif; ?>
+                    <button onclick="checkAll()">Chọn tất cả</button>
                     <div class="pt-4 border-t border-gray-200">
-                        <a href="#" id="btnThanhToan" class="btn-primary btn-sm float-right">
+                        <a href="#" id="sendSelectedProducts" class="btn-primary btn-sm float-right" onclick="sendSelectedProducts()">
                             <span class="inline-block align-middle">Thanh toán giỏ hàng</span>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 inline-block align-middle ml-2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                             </svg>
                         </a>
+
                         <a href="../home/home.php" class="btn-light btn-sm">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 inline-block align-middle mr-2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 9-3 3m0 0 3 3m-3-3h7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
@@ -227,6 +222,31 @@ $result = mysqli_query($conn, "SELECT giohang.*, sanpham.*, loaitrangsuc.*, gioh
         });
     });
 
+    function sendSelectedProducts() {
+        var checkboxes = document.querySelectorAll('.sanpham-checkbox:checked');
+        var selectedProducts = [];
+
+        // Kiểm tra xem có checkbox nào được chọn không
+        if (checkboxes.length === 0) {
+            alert("Vui lòng chọn sản phẩm trong giỏ hàng để thanh toán");
+            return; // Dừng hàm nếu không có checkbox nào được chọn
+        }
+
+        checkboxes.forEach(function(checkbox) {
+            var masp = checkbox.getAttribute('data-idsp'); // Thay đổi từ dataset sang getAttribute
+            var soluong = parseInt(document.getElementById('quantity_' + masp).value);
+            var selectedProduct = {
+                'MaSanPham': masp, // Loại bỏ khoảng trắng trong key
+                'SoLuong': soluong
+            };
+            selectedProducts.push(selectedProduct);
+        });
+
+        // Sửa đổi ID của input hidden và action của form
+        document.getElementById('hiddenSelectedProducts').value = JSON.stringify(selectedProducts);
+        document.getElementById('hiddenForm').submit();
+    }
+
     function calculateSelectedCount() {
         var checkboxes = document.querySelectorAll('.sanpham-checkbox');
         var countElement = document.querySelector('.countslsp');
@@ -242,65 +262,42 @@ $result = mysqli_query($conn, "SELECT giohang.*, sanpham.*, loaitrangsuc.*, gioh
         countElement.innerText = selectedCount;
         countElement1.innerText = selectedCount;
     }
-
-    //Tính tổng tiền
-    function calculateTotalPrice() {
-        var total = 0;
-        var checkboxes = document.querySelectorAll('.sanpham-checkbox');
-        checkboxes.forEach(function(checkbox) {
-            if (checkbox.checked) {
-                var idsp = checkbox.getAttribute('data-idsp');
-                var subtotalElement = document.getElementById('subtotal_' + idsp);
-
-                var subtotalPrice = parseInt(subtotalElement.innerText.replace(/\D/g, ''));
-                total += subtotalPrice;
-
-            }
-        });
-
-        var sumElement = document.getElementById('TongTien');
-        sumElement.innerText = formatCurrency(total);
-        var finalSumElement = document.getElementById('ThanhTien');
-        finalSumElement.innerText = formatCurrency(total);
-
-    }
-
-    function formatCurrency(number) {
-        return number.toLocaleString("vi-VN", {
-            style: "currency",
-            currency: "VND"
-        });
-    }
-    function sendSelectedProducts() {
-    // Lấy danh sách các checkbox sản phẩm được chọn
-    var checkboxes = document.querySelectorAll('.sanpham-checkbox:checked');
-    var selectedProducts = [];
-
-    // Lặp qua từng checkbox được chọn để lấy thông tin sản phẩm và số lượng
+    function checkAll() {
+    var checkboxes = document.querySelectorAll('.sanpham-checkbox');
     checkboxes.forEach(function(checkbox) {
-        var masp = checkbox.dataset.idsp; // Lấy mã sản phẩm từ thuộc tính data-idsp của checkbox
-        var soluong = parseInt(document.getElementById('quantity_' + masp).value); // Lấy số lượng sản phẩm từ input tương ứng
-
-        // Tạo đối tượng sản phẩm đã chọn
-        var selectedProduct = {
-            MASP: masp,
-            SOLUONG: soluong,
-        };
-
-        // Thêm sản phẩm đã chọn vào mảng selectedProducts
-        selectedProducts.push(selectedProduct);
+        checkbox.checked = true;
     });
 
-    // Gán giá trị selectedProducts vào trường ẩn trong biểu mẫu để gửi đi
-    document.getElementById('hiddenSelectedProducts').value = JSON.stringify(selectedProducts);
-
-    // Gửi biểu mẫu
-    if (selectedProducts.length > 0) {
-        document.getElementById('hiddenForm').submit();
-    } else {
-        alert("Vui lòng chọn sản phẩm trong giỏ hàng để thanh toán");
-    }
+    // Gọi lại các hàm tính toán
+    calculateSelectedCount();
+    calculateTotalPrice();
 }
 
+function calculateTotalPrice() {
+    var total = 0;
+    var checkboxes = document.querySelectorAll('.sanpham-checkbox');
+    checkboxes.forEach(function(checkbox) {
+        if (checkbox.checked) {
+            var idsp = checkbox.getAttribute('data-idsp');
+            var subtotalElement = document.getElementById('subtotal_' + idsp);
+
+            var subtotalPrice = parseInt(subtotalElement.innerText.replace(/\D/g, ''));
+            total += subtotalPrice;
+
+        }
+    });
+
+    var sumElement = document.getElementById('TongTien');
+    sumElement.innerText = formatCurrency(total);
+    var finalSumElement = document.getElementById('ThanhTien');
+    finalSumElement.innerText = formatCurrency(total);
+}
+
+function formatCurrency(number) {
+    return number.toLocaleString("vi-VN", {
+        style: "currency",
+        currency: "VND"
+    });
+}    
 </script>
 <?php include '../home/footer.php'; ?>

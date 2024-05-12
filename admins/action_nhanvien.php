@@ -1,21 +1,21 @@
 <?php
-    session_start();
-    include "config.php";
-    mysqli_set_charset($conn, 'utf8mb4');
+session_start();
+include "config.php";
+mysqli_set_charset($conn, 'utf8mb4');
 
-    $id="";
-    $name="";
-    $gioitinh = "";
-    $ngaysinh="";
-    $diachi="";
-    $sodienthoai="";
-    $email="";
-    $pass="";
-    $photo="";
-    $id_pb = "";
-    $id_bp = "";
+$id="";
+$name="";
+$gioitinh = "";
+$ngaysinh="";
+$diachi="";
+$sodienthoai="";
+$email="";
+$pass="";
+$photo="";
+$id_pb = "";
+$id_bp = "";
 
-    $update=false;
+$update=false;
 
 if (isset($_POST['add'])) {
 
@@ -27,6 +27,8 @@ if (isset($_POST['add'])) {
     $sodienthoai = $_POST['sodienthoai'];
     $email = $_POST['email'];
     $pass = $_POST['pass'];
+    // Mã hóa mật khẩu trước khi lưu vào cơ sở dữ liệu
+    $pass_hash = password_hash($pass, PASSWORD_DEFAULT);
     $photo=$_FILES['image']['name'];
     $upload="uploads/".$photo;
     $id_pb = $_POST['id_pb'];
@@ -35,7 +37,7 @@ if (isset($_POST['add'])) {
     $query = "INSERT INTO taikhoannhanvien (MaNhanVien, TenNhanVien, GioiTinh, NgaySinh , DiaChi , SoDienThoai, Email, 
     MatKhau, Anh, MaPhongBan, MaBoPhan) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("sssssssssss", $id, $name, $gioitinh, $ngaysinh, $diachi, $sodienthoai, $email, $pass, $upload, $id_pb, $id_bp);
+    $stmt->bind_param("sssssssssss", $id, $name, $gioitinh, $ngaysinh, $diachi, $sodienthoai, $email, $pass_hash, $upload, $id_pb, $id_bp);
     $stmt->execute();
     move_uploaded_file($_FILES['image']['tmp_name'], $upload);
     $_SESSION['response'] = "Thêm Dữ Liệu Thành Công!";
@@ -90,6 +92,8 @@ if (isset($_POST['update'])) {
     $sodienthoai = $_POST['sodienthoai'];
     $email = $_POST['email'];
     $pass = $_POST['pass'];
+    // Mã hóa mật khẩu trước khi lưu vào cơ sở dữ liệu
+    $pass_hash = password_hash($pass, PASSWORD_DEFAULT);
     $oldimage=$_POST['oldimage'];
     $id_pb = $_POST['id_pb'];
     $id_bp = $_POST['id_bp'];
@@ -106,10 +110,11 @@ if (isset($_POST['update'])) {
     $query = "UPDATE taikhoannhanvien SET TenNhanVien=?, GioiTinh=?, NgaySinh=?, DiaChi=?, SoDienThoai=?, Email=?, 
     MatKhau=?, Anh=?, MaPhongBan=?, MaBoPhan=? WHERE MaNhanVien=?";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("sssssssssss", $name, $gioitinh, $ngaysinh, $diachi, $sodienthoai, $email, $pass, $newimage, $id_pb, $id_bp, $id);
+    $stmt->bind_param("sssssssssss", $name, $gioitinh, $ngaysinh, $diachi, $sodienthoai, $email, $pass_hash, $newimage, $id_pb, $id_bp, $id);
     $stmt->execute();
 
     $_SESSION['response'] = "Cập Nhật Thành Công!";
     $_SESSION['res_type'] = "primary";
     header('location: taikhoan_nhanvien.php');
 }
+?>

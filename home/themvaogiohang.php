@@ -2,7 +2,7 @@
 include("../home/logIn_required.php");
 include("../config.php");
 if (!isset($_SESSION['MaKhachHang'])) {
-    header('Location: ../authentication/dangnhap.php');
+    header("Location: ../authentication/dangnhap.php");
     exit();
 }
 $response = array();
@@ -25,8 +25,9 @@ if ($slgh != 0) {
     $dongiaRow = mysqli_fetch_assoc($dongiaResult);
     $dongia = $dongiaRow['GiaBan'];
 
-    $insertQuery = "INSERT INTO giohang (MaSanPham, SoLuong, DonGia, MaKhachHang) VALUES ('$masp', $soluong, $dongia, '{$_SESSION['MaKhachHang']}')";
+    $insertQuery = "INSERT INTO giohang (MaSanPham, SoLuong, GiaBan, MaKhachHang) VALUES ('$masp', $soluong, $dongia, '{$_SESSION['MaKhachHang']}')";
     mysqli_query($conn, $insertQuery);
+
     // Tăng giá trị của SLGH trong session
     $_SESSION['SLGH'] += 1;
     $response['success'] = true;
