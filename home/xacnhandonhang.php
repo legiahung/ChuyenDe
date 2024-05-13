@@ -39,11 +39,11 @@ $_SESSION['tongtien'] = $tongtien;
 
 <section class="section-pagetop bg-gray">
     <div class="container">
-        <h2 class="title-page text-center">Xác nhận đặt hàng</h2>
+        <h2 class="title-page text-center text-3xl font-bold">Xác nhận đặt hàng</h2>
     </div>
 </section>
 <section class="section-content py-8">
-    <div class="container mx-auto flex justify-center">
+    <div class="container mx-auto flex justify-center bg-white p-6 rounded-lg shadow-lg">
 
         <main class="w-full md:w-9/12">
 
@@ -61,7 +61,7 @@ $_SESSION['tongtien'] = $tongtien;
                             <h6 class="text-sm font-bold text-gray-900">Giao đến</h6>
                             <p class="text-gray-800">
                                 <?php
-                                echo $_SESSION["TenKhachHang"] . '<br>' .
+                                echo 'Người Đặt Hàng: ' . $_SESSION["TenKhachHang"] . '<br>' .
                                     'Số điện thoại: ' . $_SESSION["SoDienThoai"] . '<br>' .
                                     'Địa chỉ: ' . $_SESSION["DiaChi"] . '<br>';
                                 ?>
@@ -106,7 +106,7 @@ $_SESSION['tongtien'] = $tongtien;
                         </tbody>
                     </table>
                     <div class="flex justify-center mt-4">
-                        <a href="../home/dathangthanhcong.php" class="btn btn-primary mr-3">Đặt hàng</a>
+                        <a href="../home/dathangthanhcong.php" class="inline-block px-4 py-2 bg-gray-900 hover:bg-yellow-600 text-white rounded shadow">Đặt hàng</a>
                     </div>
                 </div>
             </article>

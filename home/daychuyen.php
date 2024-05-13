@@ -1,15 +1,15 @@
 <?php include '../home/header.php'; ?>
-<title>Hoa Tai</title>
+<title>Dây Chuyền</title>
 <section class="pt-10">
     <div class="relative pb-6">
-        <img src="uploads/bg-hoatai.jpg" class="w-full h-full object-cover">
+        <img src="uploads/bg-daychuyen.jpg" class="w-full h-full object-cover">
         <div class="absolute inset-0 flex items-start justify-start p-4 md:absolute md:pt-24 md:pl-32 ">
-          <p class="md:text-5xl font-bold sm:text-xl">Hoa Tai</p>
+          <p class="md:text-5xl font-bold sm:text-xl">Dây Chuyền</p>
         </div>
     </div>
     <div class="flex flex-wrap justify-center">
         <?php
-        $query = "SELECT * FROM sanpham WHERE MaLoaiTrangSuc = 1";
+        $query = "SELECT * FROM sanpham WHERE MaLoaiTrangSuc = 3";
         $result = mysqli_query($conn, $query);
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {

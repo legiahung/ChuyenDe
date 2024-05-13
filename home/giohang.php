@@ -46,6 +46,7 @@ $result = mysqli_query($conn, "SELECT giohang.*, sanpham.*, loaitrangsuc.*, gioh
                             WHERE giohang.MaKhachHang = '{$_SESSION['MaKhachHang']}'");
 
 ?>
+<title>Giỏ Hàng</title>
 <section class="section-content py-10">
     <div class="container mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
