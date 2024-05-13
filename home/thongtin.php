@@ -128,7 +128,7 @@ WHERE MaKhachHang = '{$_SESSION['MaKhachHang']}'");
                                         while ($row = mysqli_fetch_assoc($result)) :
                                     ?>
                                             <div class="flex items-center border-b pb-4">
-                                                <img src="<?php echo $row['ANH']; ?>" alt="Product Image" class="w-16 h-16 object-cover border rounded-md mr-4">
+                                                <img src="<?php echo $row['Anh']; ?>" alt="Product Image" class="w-16 h-16 object-cover border rounded-md mr-4">
                                                 <div>
                                                     <time class="text-gray-500 block"><i class="fas fa-calendar-alt mr-1"></i><?php echo $row['NgayLap']; ?></time>
                                                     <a href="../home/xemchitiet.php?<?php echo $row['MaSanPham']; ?>" class="text-blue-500 hover:underline block"><?php echo $row['TenSanPham']; ?></a>

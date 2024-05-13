@@ -23,27 +23,29 @@ include '../home/header.php';
             </aside>
             <main class="md:col-span-2">
                 <?php
+                // Lấy thông tin đơn đặt hàng của người dùng đăng nhập
                 $tt_hd = mysqli_query($conn, "SELECT * FROM hoadon
                 JOIN taikhoankhachhang ON hoadon.MaKhachHang = taikhoankhachhang.MaKhachHang
-                WHERE MaKhachHang = '{$_SESSION['MaKhachHang']}'
-                ORDER BY MaKhachHang DESC");
-                ?>
-                <?php if (mysqli_num_rows($tt_hd) <> 0) : ?>
-                    <?php while ($row = mysqli_fetch_assoc($tt_hd)) : ?>
-                        <?php
-                        $tongtien_querry = mysqli_query($conn, "select sum(chitiethoadon.SoLuong*chitiethoadon.DonGiaXuat) as tongtien
-                        from chitiethoadon join hoadon on chitiethoadon.MaHoaDon = hoadon.MaHoaDon
+                WHERE taikhoankhachhang.MaKhachHang = '{$_SESSION['MaKhachHang']}'
+                ORDER BY hoadon.MaHoaDon DESC");
+
+                if (mysqli_num_rows($tt_hd) > 0) {
+                    // Lặp qua từng đơn đặt hàng
+                    while ($row = mysqli_fetch_assoc($tt_hd)) {
+                        // Lấy tổng tiền của đơn đặt hàng
+                        $tongtien_querry = mysqli_query($conn, "SELECT SUM(chitiethoadon.SoLuong*chitiethoadon.GiaBan) AS tongtien
+                        FROM chitiethoadon
+                        JOIN hoadon ON chitiethoadon.MaHoaDon = hoadon.MaHoaDon
                         WHERE hoadon.MaHoaDon = '{$row['MaHoaDon']}'");
                         $tongtien_row = mysqli_fetch_assoc($tongtien_querry);
                         $tongtien = $tongtien_row['tongtien'];
-                        ?>
+                ?>
                         <article class="bg-white rounded-lg shadow-md mb-4">
                             <header class="px-4 py-3 border-b border-gray-200 flex justify-between items-center">
                                 <div>
                                     <strong class="block text-lg font-semibold">ID đơn đặt hàng: <?php echo $row['MaHoaDon'] ?></strong>
-                                    <span class="block text-sm">Ngày đặt: <?php echo $row['NgayTao'] ?></span>
+                                    <span class="block text-sm">Ngày đặt: <?php echo $row['NgayLap'] ?></span>
                                 </div>
-                                <a href="#" class="text-gray-600 hover:text-gray-800"><i class="fas fa-print"></i></a>
                             </header>
                             <div class="p-4">
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -51,15 +53,18 @@ include '../home/header.php';
                                         <h6 class="text-gray-600 mb-2">Giao hàng đến</h6>
                                         <p>
                                             <?php echo $row['TenKhachHang'] ?> <br>
-                                            SĐT: <?php echo $row['Sodienthoai'] ?><br>
+                                            SĐT: <?php echo $row['SoDienThoai'] ?><br>
                                             Email: <?php echo $row['Email'] ?> <br>
                                             Địa chỉ: <?php echo $row['DiaChi'] ?><br>
                                         </p>
                                     </div>
                                     <div>
                                         <h6 class="text-gray-600 mb-2">Thanh toán</h6>
-                                        <p class="text-success">
-                                            <i class="fas fa-money-bill"></i> <?php echo $row['TinhTrangDonHang'] ?>
+                                        <p class="flex text-green-600">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z" />
+                                            </svg>
+                                            <?php echo $row['TinhTrangDonHang'] ?>
                                         </p>
                                         <p>
                                             Tổng tiền: <?php echo formatCurrencyVND($tongtien); ?><br>
@@ -80,36 +85,44 @@ include '../home/header.php';
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $tt_cthd = mysqli_query($conn, "SELECT chitiethoadon.*, hoadon.*, sanpham.*, chitiethoadon.Soluong as SLCTHD, chitiethoadon.DonGiaXuat as DGX, sanpham.GiaBan as DGSP
+                                            // Lấy chi tiết đơn đặt hàng
+                                            $tt_cthd = mysqli_query($conn, "SELECT chitiethoadon.*, sanpham.TenSanPham, sanpham.Anh
                                             FROM chitiethoadon
-                                            JOIN hoadon ON chitiethoadon.MaHoaDon = hoadon.MaHoaDon
                                             JOIN sanpham ON sanpham.MaSanPham = chitiethoadon.MaSanPham
-                                            WHERE hoadon.MaHoaDon = '{$row['MaHoaDon']}'");
+                                            WHERE chitiethoadon.MaHoaDon = '{$row['MaHoaDon']}'");
+
+                                            if (mysqli_num_rows($tt_cthd) > 0) {
+                                                // Lặp qua từng chi tiết đơn đặt hàng
+                                                while ($cthd_row = mysqli_fetch_assoc($tt_cthd)) {
                                             ?>
-                                            <?php if (mysqli_num_rows($tt_cthd) <> 0) : ?>
-                                                <?php while ($row = mysqli_fetch_assoc($tt_cthd)) : ?>
                                                     <tr>
                                                         <td class="py-2 px-4 border border-gray-300">
-                                                            <img src="<?php echo $row["ANH"] ?>" class="w-16 h-16 object-cover" alt="Product Image">
+                                                            <img src="<?php echo $cthd_row["Anh"] ?>" class="w-16 h-16 object-cover" alt="Product Image">
                                                         </td>
-                                                        <td class="py-2 px-4 border border-gray-300"><?php echo $row["TenSanPham"] ?></td>
-                                                        <td class="py-2 px-4 border border-gray-300"><?php echo $row['SLCTHD']; ?></td>
+                                                        <td class="py-2 px-4 border border-gray-300"><?php echo $cthd_row["TenSanPham"] ?></td>
+                                                        <td class="py-2 px-4 border border-gray-300"><?php echo $cthd_row['SoLuong']; ?></td>
                                                         <td class="py-2 px-4 border border-gray-300">
                                                             <?php
-                                                            $thanh_tien = $row['DGX'] * $row['SLCTHD'];
+                                                            $thanh_tien = $cthd_row['SoLuong'] * $cthd_row['GiaBan'];
                                                             echo formatCurrencyVND($thanh_tien);
                                                             ?>
                                                         </td>
                                                     </tr>
-                                                <?php endwhile; ?>
-                                            <?php endif; ?>
+                                            <?php
+                                                }
+                                            }
+                                            ?>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </article>
-                    <?php endwhile; ?>
-                <?php endif; ?>
+                <?php
+                    }
+                } else {
+                    echo "<p>Không có đơn đặt hàng nào.</p>";
+                }
+                ?>
             </main>
         </div>
     </div>

@@ -2,73 +2,50 @@
 include("../config.php");
 include("../home/logIn_required.php"); 
 include '../home/header.php';
-function LayMaHoaDon($db) {
-    // Lấy danh sách các MaKhachHang từ bảng HOADON
-    $query = "SELECT MaHoaDon FROM hoadon";
-    $result = mysqli_query($db, $query);
 
-    // Lấy MaHoaDon lớn nhất
-    $maMax = '';
-    while ($row = mysqli_fetch_assoc($result)) {
-        $maHD = $row['MaHoaDon'];
-        if ($maHD > $maMax) {
-            $maMax = $maHD;
-        }
-    }
+// Thêm vào bảng hoadon
+$insertHoaDonQuery = "INSERT INTO `hoadon` (`MaKhachHang`, `NgayLap`, `TinhTrangDonHang`) 
+VALUES ('{$_SESSION['MaKhachHang']}', NOW(), 'Đang xử lý')";
 
-    // Tạo mã ND mới
-    $maHD = intval(substr($maMax, 2)) + 1;
-    $HD = str_pad($maHD, 4, '0', STR_PAD_LEFT);
-    return 'HD' . $HD;
-}
-$mahd = LayMaHoaDon($conn);
+if(mysqli_query($conn, $insertHoaDonQuery)) {
+    // Lấy mã hóa đơn vừa được tạo
+    $maHoaDon = mysqli_insert_id($conn);
 
-//Thêm vào bảng hóa đơn
-mysqli_query($conn,"INSERT INTO `hoadon` (`MaHoaDon`, `MaKhachHang`, `NgayTao`, `TinhTrangDonHang`) 
-VALUES ('$mahd', '{$_SESSION['MaKhachHang']}', NOW(), 'Đang xử lý');");
+    $selectedProducts = $_SESSION['selectedProducts'];
+    // Thêm từng chi tiết hóa đơn
+    foreach ($selectedProducts as $product) {
+        $masp = $product['MaSanPham'];
+        $soluong = $product['SoLuong'];
+        
+        // Lấy số lượng sản phẩm hiện tại trong bảng sanpham
+        $soluonghientai_query = mysqli_query($conn,"SELECT SoLuong FROM sanpham WHERE MaSanPham = '$masp' LIMIT 1");
+        $row = mysqli_fetch_assoc($soluonghientai_query);
+        $soluonghientai = $row['SoLuong'];
+        
+        // Thêm chi tiết hóa đơn vào bảng chitiethoadon
+        $dongiaxuat_query = mysqli_query($conn,"SELECT GiaBan FROM giohang WHERE MaSanPham = '$masp' AND MaKhachHang = '{$_SESSION['MaKhachHang']}' LIMIT 1");
+        $row = mysqli_fetch_assoc($dongiaxuat_query);
+        $dongia = $row['GiaBan'];
+        mysqli_query($conn,"INSERT INTO `chitiethoadon` (`MaHoaDon`, `MaSanPham`, `SoLuong`, `GiaBan`) 
+    VALUES ('$maHoaDon', '$masp', $soluong,  $dongia)");
 
-
-$selectedProducts = $_SESSION['selectedProducts'];
-//Thêm từng chi tiết hóa đơn
-foreach ($selectedProducts as $product) {
-    $masp = $product['MaSanPham'];
-    $soluong = $product['SoLuong'];
-    
-    // Lấy số lượng sản phẩm hiện tại trong bảng SANPHAM
-    $soluonghientai_query = mysqli_query($conn,"SELECT SoLuong FROM sanpham WHERE MaSanPham = '$masp' LIMIT 1");
-    $row = mysqli_fetch_assoc($soluonghientai_query);
-    $soluonghientai = $row['SoLuong'];
-    
-    // Kiểm tra tình trạng đơn hàng
-    $tinhtrangdonhang_query = mysqli_query($conn,"SELECT TinhTrangDonHang FROM hoadon WHERE MaHoaDon = '$mahd' LIMIT 1");
-    $row = mysqli_fetch_assoc($tinhtrangdonhang_query);
-    $tinhtrangdonhang = $row['TinhTrangDonHang'];
-    
-    // Nếu tình trạng đơn hàng là "Đã giao thành công" thì trừ số lượng sản phẩm
-    if ($tinhtrangdonhang == "Đang giao hàng" || $tinhtrangdonhang == "Đang xử lý" || $tinhtrangdonhang == "Giao hàng thành công") {
+        // Nếu mã hóa đơn hợp lệ, tiếp tục xử lý
         $soluongmoi = $soluonghientai - $soluong;
         
         // Cập nhật số lượng sản phẩm trong bảng SANPHAM
         mysqli_query($conn,"UPDATE sanpham SET SoLuong = $soluongmoi WHERE MaSanPham = '$masp'");
     }
-    else if($tinhtrangdonhang == "Giao hàng thất bại"){
-        $soluongmoi = $soluonghientai+$soluong;
-        // Cập nhật số lượng sản phẩm trong bảng SANPHAM
-        mysqli_query($conn,"UPDATE sanpham SET SoLuong = $soluongmoi WHERE MaSanPham = '$masp'");
-        }
     
-    // Thêm chi tiết hóa đơn vào bảng chitiethoadon
-    $dongiaxuat_query = mysqli_query($conn,"SELECT GiaBan FROM giohang WHERE MaSanPham = '$masp' AND MaKhachHang = '{$_SESSION['MaKhachHang']}' LIMIT 1");
-    $row = mysqli_fetch_assoc($dongiaxuat_query);
-    $dongia = $row['GiaBan'];
-    mysqli_query($conn,"INSERT INTO `chitiethoadon` (`MaHoaDon`, `MaSanPham`, `SoLuong`, `DonGiaXuat`) 
-VALUES ('$mahd', '$masp', $soluong,  $dongia)");
-}
     // Xóa sản phẩm đã thanh toán khỏi bảng giỏ hàng
-foreach ($selectedProducts as $product) {
-    $masp = $product['MaSanPham'];
-    mysqli_query($conn, "DELETE FROM giohang WHERE MaSanPham = '$masp' AND MaKhachHang = '{$_SESSION['MaKhachHang']}'");
+    foreach ($selectedProducts as $product) {
+        $masp = $product['MaSanPham'];
+        mysqli_query($conn, "DELETE FROM giohang WHERE MaSanPham = '$masp' AND MaKhachHang = '{$_SESSION['MaKhachHang']}'");
+    }
+} else {
+    // Xử lý khi không tạo được mã hóa đơn
+    echo "Không thể tạo được mã hóa đơn! Lỗi: " . mysqli_error($conn);
 }
+
 ?>
 <script>
    // Xóa sản phẩm đã thanh toán khỏi danh sách sản phẩm được lưu trong localStorage
@@ -120,5 +97,4 @@ function isProductPaid(masp) {
         history.pushState(null, null, document.URL);
     });
 </script>
-
 <?php include '../home/footer.php';?>
