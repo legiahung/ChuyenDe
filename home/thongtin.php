@@ -131,7 +131,7 @@ WHERE MaKhachHang = '{$_SESSION['MaKhachHang']}'");
                                                 <img src="<?php echo $row['Anh']; ?>" alt="Product Image" class="w-16 h-16 object-cover border rounded-md mr-4">
                                                 <div>
                                                     <time class="text-gray-500 block"><i class="fas fa-calendar-alt mr-1"></i><?php echo $row['NgayLap']; ?></time>
-                                                    <a href="../home/xemchitiet.php?<?php echo $row['MaSanPham']; ?>" class="text-blue-500 hover:underline block"><?php echo $row['TenSanPham']; ?></a>
+                                                    <a href="../home/xemchitiet.php?id=<?php echo $row['MaSanPham']; ?>" class="text-black hover:text-yellow-500 block"><?php echo $row['TenSanPham']; ?></a>
                                                     <span class="text-green-500 block"><?php echo $row['TinhTrangDonHang']; ?></span>
                                                 </div>
                                             </div>
