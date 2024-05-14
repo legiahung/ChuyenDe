@@ -12,23 +12,23 @@
 
       <ul class="mt-12 flex flex-wrap justify-center gap-5  md:gap-8 lg:gap-12">
         <li>
-          <a class="text-gray-100 transition hover:text-pink-200" href="#"> Charm </a>
+          <a class="text-gray-100 transition hover:text-pink-200" href="charm.php"> Charm </a>
         </li>
 
         <li>
-          <a class="text-gray-100 transition hover:text-pink-200" href="#"> Hoa Tai </a>
+          <a class="text-gray-100 transition hover:text-pink-200" href="hoatai.php"> Hoa Tai </a>
         </li>
 
         <li>
-          <a class="text-gray-100 transition hover:text-pink-200" href="#"> Dây Chuyền </a>
+          <a class="text-gray-100 transition hover:text-pink-200" href="daychuyen.php"> Dây Chuyền </a>
         </li>
 
         <li>
-          <a class="text-gray-100 transition hover:text-pink-200" href="#"> Nhẫn </a>
+          <a class="text-gray-100 transition hover:text-pink-200" href="nhan.php"> Nhẫn </a>
         </li>
 
         <li>
-          <a class="text-gray-100 transition hover:text-pink-200" href="#"> Vòng Tay </a>
+          <a class="text-gray-100 transition hover:text-pink-200" href="vongtay.php"> Vòng Tay </a>
         </li>
       </ul>
 

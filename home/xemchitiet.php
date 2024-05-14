@@ -49,9 +49,9 @@ $result = mysqli_query(
                             </div>
                         </dl>
                         <div class="flex items-center mt-4">
-                            <button id="button-minus" class="bg-pink-300 hover:bg-pink-400 text-white px-3 py-1 rounded-full mr-2">-</button>
-                            <input id="ipQuantity" type="text" class="w-16 text-center border border-pink-300" value="1" readonly="readonly">
-                            <button id="button-plus" class="bg-pink-300 hover:bg-pink-400 text-white px-3 py-1 rounded-full ml-2">+</button>
+                            <button id="button-minus" class="bg-black hover:bg-yellow-600 text-white px-3 py-1 rounded-full mr-2">-</button>
+                            <input id="ipQuantity" type="text" class="w-16 text-center border border-black" value="1" readonly="readonly">
+                            <button id="button-plus" class="bg-black hover:bg-yellow-600 text-white px-3 py-1 rounded-full ml-2">+</button>
                             <script>
                                 var inputQuantity = document.getElementById("ipQuantity");
                                 var buttonPlus = document.getElementById("button-plus");

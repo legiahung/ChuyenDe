@@ -9,7 +9,7 @@
     </div>
     <div class="flex flex-wrap justify-center">
         <?php
-        $query = "SELECT * FROM sanpham WHERE MaLoaiTrangSuc = 2";
+        $query = "SELECT * FROM sanpham WHERE MaLoaiTrangSuc = 6";
         $result = mysqli_query($conn, $query);
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
