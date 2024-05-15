@@ -57,37 +57,6 @@ include 'action_nhanvien.php';
                             <option value="Nhân Viên" <?= (isset($type) && $type == 'Nhân Viên') ? 'selected' : ''; ?>>Nhân Viên</option>
                         </select>
                     </div>
-                    <div class="mb-4">
-                        <select name="id_bp" class="border rounded-lg px-4 py-2 w-full " required>
-                            <option value="">Chọn Bộ Phận</option>
-                            <?php
-                            $query_bp = "SELECT * FROM bophan";
-                            $result_bp = $conn->query($query_bp);
-                            while ($row_bp = $result_bp->fetch_assoc()) {
-                                $idbp = $row_bp['MaBoPhan'];
-                                $tenbp = $row_bp['TenBoPhan'];
-                                $selected = ($id_bp == $idbp) ? "selected" : "";
-                                echo "<option value=\"$idbp\" $selected>$tenbp</option>";
-                            }
-                            ?>
-                        </select>
-                    </div>
-                    <div class="mb-4">
-                        <select name="id_pb" class="border rounded-lg px-4 py-2 w-full ">
-                            <option value="">Chọn Phòng Ban</option>
-                            <?php
-                            $query_pb = "SELECT * FROM phongban";
-                            $result_pb = $conn->query($query_pb);
-                            while ($row_pb = $result_pb->fetch_assoc()) {
-                                $idpb = $row_pb['MaPhongBan'];
-                                $tenpb = $row_pb['TenPhongBan'];
-                                $selected = ($id_pb == $idpb) ? "selected" : "";
-                                echo "<option value=\"$idpb\" $selected>$tenpb</option>";
-                            }
-                            ?>
-                        </select>
-                    </div>
-
             </div>
             <div class="mb-4">
                 <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
@@ -115,10 +84,7 @@ include 'action_nhanvien.php';
         </div>
         <div>
             <?php
-            $query = 'SELECT u.*, bp.TenBoPhan, pb.TenPhongBan  
-                    FROM taikhoannhanvien u
-                    JOIN bophan bp ON u.MaBoPhan = bp.MaBoPhan
-                    JOIN phongban pb ON u.MaPhongBan = pb.MaPhongBan';
+            $query = 'SELECT * FROM taikhoannhanvien';
             $stmt = $conn->prepare($query);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -137,8 +103,6 @@ include 'action_nhanvien.php';
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Số Điện Thoại</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Mật Khẩu</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Phòng Ban</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Bộ Phận</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Loại Tài Khoản</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Thao tác</th>
                         </tr>
@@ -147,18 +111,16 @@ include 'action_nhanvien.php';
                         <?php while ($row = $result->fetch_assoc()) {
                             $gioitinh = ($row['GioiTinh'] == 0) ? 'Nam' : 'Nữ';
                         ?>
-                            <tr class="bg-white hover:bg-gray-100 transition duration-300">
+                            <tr class="bg-white text-xs hover:bg-gray-100 transition duration-300">
                                 <td class="border px-6 py-3"><?= $row['MaNhanVien']; ?></td>
                                 <td><img src="<?= $row['Anh']; ?>" width="120" class="rounded-lg mt-2"></td>
-                                <td class="border px-6 py-3"><?= $row['TenNhanVien']; ?></td>
+                                <td class="border px-6 py-3 whitespace-nowrap"><?= $row['TenNhanVien']; ?></td>
                                 <td class="border px-6 py-3"><?= $gioitinh; ?></td>
                                 <td class="border px-6 py-3"><?= $row['NgaySinh']; ?></td>
                                 <td class="border px-6 py-3"><?= $row['DiaChi']; ?></td>
                                 <td class="border px-6 py-3"><?= $row['SoDienThoai']; ?></td>
                                 <td class="border px-6 py-3"><?= $row['Email']; ?></td>
-                                <td class="border px-6 py-3"><?= $row['MatKhau']; ?></td>
-                                <td class="border px-6 py-3"><?= $row['TenPhongBan']; ?></td>
-                                <td class="border px-6 py-3"><?= $row['TenBoPhan']; ?></td>
+                                <td class="border px-6 py-3"><?= substr($row['MatKhau'], 0, 10) . '...'; ?></td>
                                 <td class="border px-6 py-3"><?= $row['TYPE_ADMIN']; ?></td>
                                 <td class="border px-6 py-3">
                                     <div class="flex flex-col">

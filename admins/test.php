@@ -81,19 +81,20 @@ include "config.php";
                 </a>
             </div>
         </div>
-        <div class="inline-block pt-80">
+        <!-- <a class="flex items-center justify-center w-full h-16 mt-auto bg-indigo-800 hover:bg-indigo-700" href="">
+            <svg class="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span class="ml-2 text-sm font-bold">Tài Khoản</span>
+        </a> -->
+        <!-- <div class="inline-block">
             <?php
             $sql_countHD = "SELECT * FROM taikhoannhanvien 
             WHERE MaNhanVien = '{$_SESSION['MaNhanVien']}'";
             $result = mysqli_query($conn, $sql_countHD);
             $row = mysqli_fetch_assoc($result); // Sử dụng mysqli_fetch_assoc thay vì mysqli_fetch_row
             ?>
-            <button class="flex py-2.5 px-5 text-xs bg-indigo-500 text-white rounded-full cursor-pointer font-semibold text-center shadow-xs transition-all duration-500 hover:bg-indigo-700 " href="#" data-tooltip-target="popover-footer">
-                <svg class="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span class="ml-1 text-sm">Tài Khoản</span>
-            </button>
+            <button class="py-2.5 px-5 text-xs bg-indigo-500 text-white rounded-full cursor-pointer font-semibold text-center shadow-xs transition-all duration-500 hover:bg-indigo-700 " href="#" data-tooltip-target="popover-footer"> Tài Khoản </button>
             <div class="w-52 inline-block absolute mb-2 bottom-full left-1/2 -translate-x-1/2 z-10 bg-white rounded-xl shadow-md text-left invisible" role="tooltip" id="popover-footer">
                 <div class="p-5 border-b border-gray-200 flex items-center justify-between">
                     <div class="flex items-center gap-3">
@@ -109,14 +110,13 @@ include "config.php";
                 <div class="py-5 px-5">
                     <ul class="block space-y-2">
                         <li class="flex items-center gap-3 text-sm text-gray-900">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" />
-                            </svg>
-                            <?php echo isset($row['TYPE_ADMIN']) ? $row['TYPE_ADMIN'] : ''; ?>
+                            <svg class="transition-none" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path class="transition-none" d="M15.2418 8.76873L10.8252 4.35207M4.34241 8.76873L8.75908 4.35207M6.45829 12.852C6.45829 12.852 7.39746 13.6854 8.12496 13.6854C8.85246 13.6854 9.79163 12.852 9.79163 12.852C9.79163 12.852 10.7308 13.6854 11.4583 13.6854C12.1858 13.6854 13.125 12.852 13.125 12.852M9.08336 4.67705L8.43336 4.02703C8.04169 3.63536 8.04169 3.00207 8.43336 2.6104L9.08336 1.96038C9.47502 1.56871 10.1084 1.56871 10.5 1.96038L11.15 2.6104C11.5417 3.00207 11.5417 3.63536 11.15 4.02703L10.5 4.67705C10.1084 5.06872 9.47502 5.06872 9.08336 4.67705ZM16 8.52708H16.9166C17.4666 8.52708 17.9166 8.97709 17.9166 9.52709V10.4437C17.9166 10.9937 17.4666 11.4438 16.9166 11.4438H16C15.45 11.4438 15 10.9937 15 10.4437V9.52709C15 8.97709 15.45 8.52708 16 8.52708ZM3.5833 8.52708H2.66662C2.11662 8.52708 1.66663 8.97709 1.66663 9.52709V10.4437C1.66663 10.9937 2.11662 11.4438 2.66662 11.4438H3.5833C4.1333 11.4438 4.58329 10.9937 4.58329 10.4437V9.52709C4.58329 8.97709 4.1333 8.52708 3.5833 8.52708ZM6.45829 12.7927C6.45829 12.7927 6.45829 14.4984 6.45829 16.1854C6.45829 16.971 6.45829 17.3639 6.70237 17.608C6.94645 17.852 7.33928 17.852 8.12496 17.852H11.4583C12.244 17.852 12.6368 17.852 12.8809 17.608C13.125 17.3639 13.125 16.971 13.125 16.1854C13.125 14.4984 13.125 12.7927 13.125 12.7927L9.79163 7.85203L6.45829 12.7927Z" stroke="#9CA3AF" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg> <?php echo isset($row['TYPE_ADMIN']) ? $row['TYPE_ADMIN'] : ''; ?>
                         </li>
                     </ul>
                 </div>
             </div>
-        </div>
+        </div> -->
 
     </div>

@@ -11,8 +11,6 @@ $sodienthoai="";
 $email="";
 $pass="";
 $photo="";
-$id_pb = "";
-$id_bp = "";
 $type = "";
 
 $update=false;
@@ -29,14 +27,12 @@ if (isset($_POST['add'])) {
     $pass_hash = password_hash($pass, PASSWORD_DEFAULT);
     $photo = $_FILES['image']['name'];
     $upload = "uploads/" . $photo;
-    $id_pb = $_POST['id_pb'];
-    $id_bp = $_POST['id_bp'];
     $type = $_POST['type'];
 
     $query = "INSERT INTO taikhoannhanvien (MaNhanVien, TenNhanVien, GioiTinh, NgaySinh , DiaChi , SoDienThoai, Email, 
-    MatKhau, Anh, MaPhongBan, MaBoPhan , TYPE_ADMIN) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    MatKhau, Anh, TYPE_ADMIN) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("ssssssssssss", $id, $name, $gioitinh, $ngaysinh, $diachi, $sodienthoai, $email, $pass_hash, $upload, $id_pb, $id_bp, $type);
+    $stmt->bind_param("ssssssssss", $id, $name, $gioitinh, $ngaysinh, $diachi, $sodienthoai, $email, $pass_hash, $upload, $type);
     $stmt->execute();
     move_uploaded_file($_FILES['image']['tmp_name'], $upload);
     $_SESSION['response'] = "Thêm Dữ Liệu Thành Công!";
@@ -76,8 +72,6 @@ if (isset($_GET['edit'])) {
     $email = $row['Email'];
     $pass = $row['MatKhau'];
     $photo = $row['Anh'];
-    $id_pb = $row['MaPhongBan'];
-    $id_bp = $row['MaBoPhan'];
     $type = $row['TYPE_ADMIN'];
 
     $update = true;
@@ -93,8 +87,6 @@ if (isset($_POST['update'])) {
     $email = $_POST['email'];
     $new_pass = $_POST['pass'];
     $oldimage = $_POST['oldimage'];
-    $id_pb = $_POST['id_pb'];
-    $id_bp = $_POST['id_bp'];
     $type = $_POST['type'];
 
     if (isset($_FILES['image']['name']) && ($_FILES['image']['name'] != "")) {
@@ -118,9 +110,9 @@ if (isset($_POST['update'])) {
     }
 
     $query = "UPDATE taikhoannhanvien SET TenNhanVien=?, GioiTinh=?, NgaySinh=?, DiaChi=?, SoDienThoai=?, Email=?, 
-    MatKhau=?, Anh=?, MaPhongBan=?, MaBoPhan=?, TYPE_ADMIN=? WHERE MaNhanVien=?";
+    MatKhau=?, Anh=?, TYPE_ADMIN=? WHERE MaNhanVien=?";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("ssssssssssss", $name, $gioitinh, $ngaysinh, $diachi, $sodienthoai, $email, $pass_hash, $newimage, $id_pb, $id_bp, $type, $id);
+    $stmt->bind_param("ssssssssss", $name, $gioitinh, $ngaysinh, $diachi, $sodienthoai, $email, $pass_hash, $newimage, $type, $id);
     $stmt->execute();
 
     $_SESSION['response'] = "Cập Nhật Thành Công!";

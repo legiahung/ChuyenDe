@@ -32,6 +32,7 @@ if (mysqli_num_rows($result) > 0) {
 ?>
     <div class="p-4 sm:ml-60">
         <table class="table-auto border-collapse border">
+            <h3 class="px-6 py-3 text-center text-xl font-medium text-gray-500 uppercase tracking-wider">Quản Lý Hóa Đơn</h3>
             <thead>
                 <tr class="bg-blue-300">
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">mã hoá đơn</th>
@@ -48,8 +49,8 @@ if (mysqli_num_rows($result) > 0) {
                 <?php
                 while ($row = mysqli_fetch_assoc($result)) {
                 ?>
-                    <tr class="bg-white hover:bg-gray-100 transition duration-300"">
-                        <td class=" border px-6 py-3"><?php echo $row["MaHoaDon"]; ?></td>
+                    <tr class="bg-white hover:bg-gray-100 transition duration-300">
+                        <td class="border px-6 py-3"><?php echo $row["MaHoaDon"]; ?></td>
                         <td class="border px-6 py-3"><?php echo $row["NgayLap"]; ?></td>
                         <td class="border px-6 py-3"><?php echo $row["TenKhachHang"]; ?></td>
                         <td class="border px-6 py-3"><?php echo $row["SoDienThoai"]; ?></td>
@@ -178,34 +179,35 @@ mysqli_close($conn);
     }
     /////
     function openViewModal(maHoaDon) {
-    fetch('view_hoadon.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ MaHoaDon: maHoaDon })
-    })
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById('maHD').innerText = data.maHD || 'Không có dữ liệu';
-        document.getElementById('ngaytao').innerText = data.ngaytao || 'Không có dữ liệu';
+        fetch('view_hoadon.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    MaHoaDon: maHoaDon
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('maHD').innerText = data.maHD || 'Không có dữ liệu';
+                document.getElementById('ngaytao').innerText = data.ngaytao || 'Không có dữ liệu';
 
-        const list = document.getElementById('list');
-        list.innerHTML = data.list || '<tr><td colspan="4">Không có dữ liệu</td></tr>';
+                const list = document.getElementById('list');
+                list.innerHTML = data.list || '<tr><td colspan="4">Không có dữ liệu</td></tr>';
 
-        document.getElementById('total').innerHTML = data.total || '0 VND';
+                document.getElementById('total').innerHTML = data.total || '0 VND';
 
-        document.getElementById('viewModal').classList.remove('hidden');
-    })
-    .catch(error => console.error('Error:', error));
-}
+                document.getElementById('viewModal').classList.remove('hidden');
+            })
+            .catch(error => console.error('Error:', error));
+    }
 
-function closeModal(modalId) {
-    document.getElementById(modalId).classList.add('hidden');
-}
+    function closeModal(modalId) {
+        document.getElementById(modalId).classList.add('hidden');
+    }
 
-document.querySelector('.close').addEventListener('click', function() {
-    closeModal('viewModal');
-});
-
+    document.querySelector('.close').addEventListener('click', function() {
+        closeModal('viewModal');
+    });
 </script>
