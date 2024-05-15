@@ -25,10 +25,10 @@ include 'action_sanpham.php';
                 <form action="action_sanpham.php" method="post" enctype="multipart/form-data" class="mt-4">
                     <input type="hidden" name="id" value="<?= $id; ?>">
                     <div class="mb-4">
-                        <input type="text" name="name" value="<?= $name; ?>" class="border rounded-lg px-4 py-2 w-full text-xs font-medium text-gray-500 uppercase tracking-wider" placeholder="Nhập Tên Sản Phẩm" required>
+                        <input type="text" name="name" value="<?= $name; ?>" class="border rounded-lg px-4 py-2 w-full" placeholder="Nhập Tên Sản Phẩm" required>
                     </div>
                     <div class="mb-4">
-                        <select name="id_lts" class="border rounded-lg px-4 py-2 w-full text-xs font-medium text-gray-500 uppercase tracking-wider" required>
+                        <select name="id_lts" class="border rounded-lg px-4 py-2 w-full" required>
                             <option value="">Chọn loại trang sức</option>
                             <?php
                             $query_lts = "SELECT * FROM loaitrangsuc";
@@ -43,10 +43,10 @@ include 'action_sanpham.php';
                         </select>
                     </div>
                     <div class="mb-4">
-                        <input type="number" name="giaban" value="<?= $giaban; ?>" class="border rounded-lg px-4 py-2 w-full text-xs font-medium text-gray-500 uppercase tracking-wider" placeholder="Nhập Giá Sản Phẩm" required>
+                        <input type="number" name="giaban" value="<?= $giaban; ?>" class="border rounded-lg px-4 py-2 w-full" placeholder="Nhập Giá Sản Phẩm" required>
                     </div>
                     <div class="mb-4">
-                        <select name="id_ncc" class="border rounded-lg px-4 py-2 w-full text-xs font-medium text-gray-500 uppercase tracking-wider" required>
+                        <select name="id_ncc" class="border rounded-lg px-4 py-2 w-full" required>
                             <option value="">Chọn Nhà Cung Cấp</option>
                             <?php
                             $query_ncc = "SELECT * FROM nhacungcap";
@@ -61,24 +61,24 @@ include 'action_sanpham.php';
                         </select>
                     </div>
                     <div class="mb-4">
-                        <input type="text" name="mota" value="<?= $mota; ?>" class="border rounded-lg px-4 py-2 w-full text-xs font-medium text-gray-500 uppercase tracking-wider" placeholder="Nhập Mô Tả" required>
+                        <input type="text" name="mota" value="<?= $mota; ?>" class="border rounded-lg px-4 py-2 w-full" placeholder="Nhập Mô Tả" required>
                     </div>
                     <div class="mb-4">
-                        <input type="text" name="soluong" value="<?= $soluong; ?>" class="border rounded-lg px-4 py-2 w-full text-xs font-medium text-gray-500 uppercase tracking-wider" placeholder="Nhập Số Lượng" required>
+                        <input type="text" name="soluong" value="<?= $soluong; ?>" class="border rounded-lg px-4 py-2 w-full" placeholder="Nhập Số Lượng" required>
                     </div>
                     <div class="mb-4">
                         <input type="hidden" name="oldimage" value="<?= $photo; ?>">
-                        <input type="file" name="image" class="border rounded-lg px-4 py-2 w-full text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <input type="file" name="image" class="border rounded-lg px-4 py-2 w-full">
                         <img src="<?= $photo; ?>" width="120" class="rounded-lg mt-2">
                     </div>
                     <div class="mb-4">
                         <input type="hidden" name="oldimage2" value="<?= $photo2; ?>">
-                        <input type="file" name="image2" class="border rounded-lg px-4 py-2 w-full text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <input type="file" name="image2" class="border rounded-lg px-4 py-2 w-full">
                         <img src="<?= $photo2; ?>" width="120" class="rounded-lg mt-2">
                     </div>
                     <div class="mb-4">
                         <input type="hidden" name="oldimage3" value="<?= $photo3; ?>">
-                        <input type="file" name="image3" class="border rounded-lg px-4 py-2 w-full text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <input type="file" name="image3" class="border rounded-lg px-4 py-2 w-full">
                         <img src="<?= $photo3; ?>" width="120" class="rounded-lg mt-2">
                     </div>
                     <div class="mb-4">

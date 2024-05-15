@@ -30,7 +30,7 @@ include 'action_nhanvien.php';
                     </div>
                     <div class="mb-4">
                         <select name="gioitinh" class="border rounded-lg px-4 py-2 w-full " required>
-                            <option value="">Chọn giới tính</option>
+                            <option value="">Chọn Giới Tính</option>
                             <option value="0" <?= ($gioitinh == '0') ? 'selected' : ''; ?>>Nam</option>
                             <option value="1" <?= ($gioitinh == '1') ? 'selected' : ''; ?>>Nữ</option>
                         </select>
@@ -59,7 +59,7 @@ include 'action_nhanvien.php';
                     </div>
                     <div class="mb-4">
                         <select name="id_bp" class="border rounded-lg px-4 py-2 w-full " required>
-                            <option value="">Chọn bộ phận</option>
+                            <option value="">Chọn Bộ Phận</option>
                             <?php
                             $query_bp = "SELECT * FROM bophan";
                             $result_bp = $conn->query($query_bp);
@@ -74,7 +74,7 @@ include 'action_nhanvien.php';
                     </div>
                     <div class="mb-4">
                         <select name="id_pb" class="border rounded-lg px-4 py-2 w-full ">
-                            <option value="">Chọn phòng ban</option>
+                            <option value="">Chọn Phòng Ban</option>
                             <?php
                             $query_pb = "SELECT * FROM phongban";
                             $result_pb = $conn->query($query_pb);

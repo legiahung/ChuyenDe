@@ -26,29 +26,29 @@ include 'action_khachhang.php';
                 <form action="action_khachhang.php" method="post" enctype="multipart/form-data" class="mt-4">
                     <input type="hidden" name="id" value="<?= $id; ?>">
                     <div class="mb-4">
-                        <input type="text" name="name" value="<?= $name; ?>" class="border rounded-lg px-4 py-2 w-full text-xs font-medium text-gray-500 uppercase tracking-wider" placeholder="Nhập Tên Nhân Viên" required>
+                        <input type="text" name="name" value="<?= $name; ?>" class="border rounded-lg px-4 py-2 w-full" placeholder="Nhập Tên Nhân Viên" required>
                     </div>
                     <div class="mb-4">
-                        <select name="gioitinh" class="border rounded-lg px-4 py-2 w-full text-xs font-medium text-gray-500 uppercase tracking-wider" required>
+                        <select name="gioitinh" class="border rounded-lg px-4 py-2 w-full" required>
                             <option value="">Chọn giới tính</option>
                             <option value="0" <?= ($gioitinh == '0') ? 'selected' : ''; ?>>Nam</option>
                             <option value="1" <?= ($gioitinh == '1') ? 'selected' : ''; ?>>Nữ</option>
                         </select>
                     </div>
                     <div class="mb-4">
-                        <input type="date" name="ngaysinh" value="<?= $ngaysinh; ?>" class="border rounded-lg px-4 py-2 w-full text-xs font-medium text-gray-500 uppercase tracking-wider" placeholder="Nhập ngày sinh" required>
+                        <input type="date" name="ngaysinh" value="<?= $ngaysinh; ?>" class="border rounded-lg px-4 py-2 w-full" placeholder="Nhập ngày sinh" required>
                     </div>
                     <div class="mb-4">
-                        <input type="text" name="diachi" value="<?= $diachi; ?>" class="border rounded-lg px-4 py-2 w-full text-xs font-medium text-gray-500 uppercase tracking-wider" placeholder="Nhập Địa Chỉ" required>
+                        <input type="text" name="diachi" value="<?= $diachi; ?>" class="border rounded-lg px-4 py-2 w-full" placeholder="Nhập Địa Chỉ" required>
                     </div>
                     <div class="mb-4">
-                        <input type="text" name="sodienthoai" value="<?= $sodienthoai; ?>" class="border rounded-lg px-4 py-2 w-full text-xs font-medium text-gray-500 uppercase tracking-wider" placeholder="Nhập Số Điện Thoại" required>
+                        <input type="text" name="sodienthoai" value="<?= $sodienthoai; ?>" class="border rounded-lg px-4 py-2 w-full" placeholder="Nhập Số Điện Thoại" required>
                     </div>
                     <div class="mb-4">
-                        <input type="text" name="email" value="<?= $email; ?>" class="border rounded-lg px-4 py-2 w-full text-xs font-medium text-gray-500 uppercase tracking-wider" placeholder="Nhập Email" required>
+                        <input type="text" name="email" value="<?= $email; ?>" class="border rounded-lg px-4 py-2 w-full" placeholder="Nhập Email" required>
                     </div>
                     <div class="mb-4">
-                        <input type="text" name="pass" value="<?= $pass; ?>" class="border rounded-lg px-4 py-2 w-full text-xs font-medium text-gray-500 uppercase tracking-wider" placeholder="Nhập Mật Khẩu" required>
+                        <input type="text" name="pass" value="<?= $pass; ?>" class="border rounded-lg px-4 py-2 w-full" placeholder="Nhập Mật Khẩu" required>
                     </div>
                     <div class="mb-4">
                         <?php if ($id == true) { ?>

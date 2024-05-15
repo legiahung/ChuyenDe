@@ -26,10 +26,10 @@ include 'action_phongban.php';
                 <form action="action_phongban.php" method="post" enctype="multipart/form-data" class="mt-4">
                     <input type="hidden" name="id" value="<?= $id; ?>">
                     <div class="mb-4">
-                        <input type="text" name="tenpb" value="<?= $tenpb; ?>" class="border rounded-lg px-4 py-2 w-full text-left text-xs font-medium text-gray-500 uppercase tracking-wider" placeholder="Nhập tên phòng ban" required>
+                        <input type="text" name="tenpb" value="<?= $tenpb; ?>" class="border rounded-lg px-4 py-2 w-full" placeholder="Nhập tên phòng ban" required>
                     </div>
                     <div class="mb-4">
-                        <select name="id_bp" class="border rounded-lg px-4 py-2 w-full text-left text-xs font-medium text-gray-500 uppercase tracking-wider" required>
+                        <select name="id_bp" class="border rounded-lg px-4 py-2 w-full" required>
                             <option value="">Chọn bộ phận</option>
                             <?php
                             $query_bp = "SELECT * FROM bophan";

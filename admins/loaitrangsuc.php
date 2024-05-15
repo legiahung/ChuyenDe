@@ -27,7 +27,7 @@ include 'action_loaits.php';
                     <form action="action_loaits.php" method="post" enctype="multipart/form-data" class="mt-4">
                         <div class="mb-4">
                             <input type="hidden" name="maloaitrangsuc" value="<?= $maloaitrangsuc; ?>">
-                            <input type="text" name="tenloaitrangsuc" value="<?= $tenloaitrangsuc; ?>" class="border rounded-lg px-4 py-2 w-full text-left text-xs font-medium text-gray-500 uppercase tracking-wider" placeholder="Nhập tên loại trang sức" required>
+                            <input type="text" name="tenloaitrangsuc" value="<?= $tenloaitrangsuc; ?>" class="border rounded-lg px-4 py-2 w-full" placeholder="Nhập tên loại trang sức" required>
                         </div>
                         <?php if ($maloaitrangsuc == true) { ?>
                             <input type="submit" name="update" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded" value="Cập Nhập">

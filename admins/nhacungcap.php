@@ -27,16 +27,16 @@ include 'action_ncc.php';
                 <form action="action_ncc.php" method="post" enctype="multipart/form-data" class="mt-4">
                     <input type="hidden" name="id" value="<?= $id; ?>">
                     <div class="mb-4">
-                        <input type="text" name="tenncc" value="<?= $tenncc; ?>" class="border rounded-lg px-4 py-2 w-full text-left text-xs font-medium text-gray-500 uppercase tracking-wider " placeholder="Nhập tên NCC" required>
+                        <input type="text" name="tenncc" value="<?= $tenncc; ?>" class="border rounded-lg px-4 py-2 w-full   " placeholder="Nhập tên NCC" required>
                     </div>
                     <div class="mb-4">
-                        <input type="email" name="email" value="<?= $email; ?>" class="border rounded-lg px-4 py-2 w-full text-left text-xs font-medium text-gray-500 uppercase tracking-wider" placeholder="Nhập email NCC" required>
+                        <input type="email" name="email" value="<?= $email; ?>" class="border rounded-lg px-4 py-2 w-full  " placeholder="Nhập email NCC" required>
                     </div>
                     <div class="mb-4">
-                        <input type="text" name="addncc" value="<?= $addncc; ?>" class="border rounded-lg px-4 py-2 w-full text-left text-xs font-medium text-gray-500 uppercase tracking-wider" placeholder="Nhập địa chỉ NCC" required>
+                        <input type="text" name="addncc" value="<?= $addncc; ?>" class="border rounded-lg px-4 py-2 w-full  " placeholder="Nhập địa chỉ NCC" required>
                     </div>
                     <div class="mb-4">
-                        <input type="text" name="phonencc" value="<?= $phonencc; ?>" class="border rounded-lg px-4 py-2 w-full text-left text-xs font-medium text-gray-500 uppercase tracking-wider" placeholder="Nhập SĐT NCC" required>
+                        <input type="text" name="phonencc" value="<?= $phonencc; ?>" class="border rounded-lg px-4 py-2 w-full  " placeholder="Nhập SĐT NCC" required>
                     </div>
                     <div class="mb-4">
                         <?php if ($id == true) { ?>

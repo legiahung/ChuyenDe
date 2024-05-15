@@ -26,7 +26,7 @@ include 'action_bophan.php';
                     <form action="action_bophan.php" method="post" enctype="multipart/form-data" class="mt-4">
                         <input type="hidden" name="id" value="<?= $id; ?>">
                         <div class="mb-4">
-                            <input type="text" name="tenbp" value="<?= $tenbp; ?>" class="border rounded-lg px-4 py-2 w-full text-xs font-medium text-gray-500 uppercase tracking-wider" placeholder="Nhập tên bộ phận" required>
+                            <input type="text" name="tenbp" value="<?= $tenbp; ?>" class="border rounded-lg px-4 py-2 w-full" placeholder="Nhập tên bộ phận" required>
                         </div>
                         <div class="mb-4">
                             <?php if ($id == true) { ?>
