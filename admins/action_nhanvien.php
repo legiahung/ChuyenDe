@@ -1,5 +1,4 @@
 <?php
-session_start();
 include "config.php";
 mysqli_set_charset($conn, 'utf8mb4');
 
@@ -14,11 +13,11 @@ $pass="";
 $photo="";
 $id_pb = "";
 $id_bp = "";
+$type = "";
 
 $update=false;
 
 if (isset($_POST['add'])) {
-
     $id = $_POST['id'];
     $name = $_POST['name'];
     $gioitinh = $_POST['gioitinh'];
@@ -27,17 +26,17 @@ if (isset($_POST['add'])) {
     $sodienthoai = $_POST['sodienthoai'];
     $email = $_POST['email'];
     $pass = $_POST['pass'];
-    // Mã hóa mật khẩu trước khi lưu vào cơ sở dữ liệu
     $pass_hash = password_hash($pass, PASSWORD_DEFAULT);
-    $photo=$_FILES['image']['name'];
-    $upload="uploads/".$photo;
+    $photo = $_FILES['image']['name'];
+    $upload = "uploads/" . $photo;
     $id_pb = $_POST['id_pb'];
     $id_bp = $_POST['id_bp'];
+    $type = $_POST['type'];
 
     $query = "INSERT INTO taikhoannhanvien (MaNhanVien, TenNhanVien, GioiTinh, NgaySinh , DiaChi , SoDienThoai, Email, 
-    MatKhau, Anh, MaPhongBan, MaBoPhan) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    MatKhau, Anh, MaPhongBan, MaBoPhan , TYPE_ADMIN) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("sssssssssss", $id, $name, $gioitinh, $ngaysinh, $diachi, $sodienthoai, $email, $pass_hash, $upload, $id_pb, $id_bp);
+    $stmt->bind_param("ssssssssssss", $id, $name, $gioitinh, $ngaysinh, $diachi, $sodienthoai, $email, $pass_hash, $upload, $id_pb, $id_bp, $type);
     $stmt->execute();
     move_uploaded_file($_FILES['image']['tmp_name'], $upload);
     $_SESSION['response'] = "Thêm Dữ Liệu Thành Công!";
@@ -76,9 +75,10 @@ if (isset($_GET['edit'])) {
     $sodienthoai = $row['SoDienThoai'];
     $email = $row['Email'];
     $pass = $row['MatKhau'];
-    $photo= $row['Anh'];
+    $photo = $row['Anh'];
     $id_pb = $row['MaPhongBan'];
     $id_bp = $row['MaBoPhan'];
+    $type = $row['TYPE_ADMIN'];
 
     $update = true;
 }
@@ -91,26 +91,36 @@ if (isset($_POST['update'])) {
     $diachi = $_POST['diachi'];
     $sodienthoai = $_POST['sodienthoai'];
     $email = $_POST['email'];
-    $pass = $_POST['pass'];
-    // Mã hóa mật khẩu trước khi lưu vào cơ sở dữ liệu
-    $pass_hash = password_hash($pass, PASSWORD_DEFAULT);
-    $oldimage=$_POST['oldimage'];
+    $new_pass = $_POST['pass'];
+    $oldimage = $_POST['oldimage'];
     $id_pb = $_POST['id_pb'];
     $id_bp = $_POST['id_bp'];
+    $type = $_POST['type'];
 
-    if(isset($_FILES['image']['name'])&&($_FILES['image']['name']!="")){
-        $newimage="uploads/".$_FILES['image']['name'];
+    if (isset($_FILES['image']['name']) && ($_FILES['image']['name'] != "")) {
+        $newimage = "uploads/" . $_FILES['image']['name'];
         unlink($oldimage);
         move_uploaded_file($_FILES['image']['tmp_name'], $newimage);
+    } else {
+        $newimage = $oldimage;
     }
-    else{
-        $newimage=$oldimage;
+
+    if (!empty($new_pass)) {
+        $pass_hash = password_hash($new_pass, PASSWORD_DEFAULT);
+    } else {
+        $query = "SELECT MatKhau FROM taikhoannhanvien WHERE MaNhanVien=?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        $pass_hash = $row['MatKhau'];
     }
 
     $query = "UPDATE taikhoannhanvien SET TenNhanVien=?, GioiTinh=?, NgaySinh=?, DiaChi=?, SoDienThoai=?, Email=?, 
-    MatKhau=?, Anh=?, MaPhongBan=?, MaBoPhan=? WHERE MaNhanVien=?";
+    MatKhau=?, Anh=?, MaPhongBan=?, MaBoPhan=?, TYPE_ADMIN=? WHERE MaNhanVien=?";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("sssssssssss", $name, $gioitinh, $ngaysinh, $diachi, $sodienthoai, $email, $pass_hash, $newimage, $id_pb, $id_bp, $id);
+    $stmt->bind_param("ssssssssssss", $name, $gioitinh, $ngaysinh, $diachi, $sodienthoai, $email, $pass_hash, $newimage, $id_pb, $id_bp, $type, $id);
     $stmt->execute();
 
     $_SESSION['response'] = "Cập Nhật Thành Công!";

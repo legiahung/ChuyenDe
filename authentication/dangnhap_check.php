@@ -20,24 +20,23 @@ if (isset($_POST['Email']) && isset($_POST['MatKhau'])) {
         exit();
     } else {
         // Kiểm tra trong bảng taikhoankhachhang
-        $sql_khachhang = "SELECT * FROM taikhoankhachhang WHERE Email='$email'";
-        $result_khachhang = mysqli_query($conn, $sql_khachhang);
+        $sql_khachhang = "SELECT * FROM taikhoankhachhang WHERE Email=?";
+        $stmt_khachhang = $conn->prepare($sql_khachhang);
+        $stmt_khachhang->bind_param("s", $email);
+        $stmt_khachhang->execute();
+        $result_khachhang = $stmt_khachhang->get_result();
 
-        if (mysqli_num_rows($result_khachhang) === 1) {
-            $row_khachhang = mysqli_fetch_assoc($result_khachhang);
+        if ($result_khachhang->num_rows === 1) {
+            $row_khachhang = $result_khachhang->fetch_assoc();
             if (password_verify($matkhau, $row_khachhang['MatKhau'])) {
+                // Thiết lập session cho khách hàng
+                $_SESSION['user_type'] = 'Khách Hàng';
                 $_SESSION['TenKhachHang'] = $row_khachhang['TenKhachHang'];
                 $_SESSION['MaKhachHang'] = $row_khachhang['MaKhachHang'];
                 $_SESSION['GioiTinh'] = $row_khachhang['GioiTinh'];
                 $_SESSION['SoDienThoai'] = $row_khachhang['SoDienThoai'];
                 $_SESSION['DiaChi'] = $row_khachhang['DiaChi'];
                 $_SESSION['Email'] = $row_khachhang['Email'];
-
-                // Đếm số lượng sản phẩm trong giỏ hàng
-                $slgh = "SELECT COUNT(giohang.SoLuong) AS total FROM giohang JOIN taikhoankhachhang ON giohang.MaKhachHang = taikhoankhachhang.MaKhachHang WHERE giohang.MaKhachHang = '{$row_khachhang['MaKhachHang']}'";
-                $result_slgh = mysqli_query($conn, $slgh);
-                $row_slgh = mysqli_fetch_assoc($result_slgh);
-                $_SESSION['SLGH'] = $row_slgh['total'];
 
                 header("Location: ../home/home.php");
                 exit();
@@ -47,12 +46,22 @@ if (isset($_POST['Email']) && isset($_POST['MatKhau'])) {
             }
         } else {
             // Kiểm tra trong bảng taikhoannhanvien
-            $sql_nhanvien = "SELECT * FROM taikhoannhanvien WHERE Email='$email'";
-            $result_nhanvien = mysqli_query($conn, $sql_nhanvien);
+            $sql_nhanvien = "SELECT * FROM taikhoannhanvien WHERE Email=?";
+            $stmt_nhanvien = $conn->prepare($sql_nhanvien);
+            $stmt_nhanvien->bind_param("s", $email);
+            $stmt_nhanvien->execute();
+            $result_nhanvien = $stmt_nhanvien->get_result();
 
-            if (mysqli_num_rows($result_nhanvien) === 1) {
-                $row_nhanvien = mysqli_fetch_assoc($result_nhanvien);
+            if ($result_nhanvien->num_rows === 1) {
+                $row_nhanvien = $result_nhanvien->fetch_assoc();
                 if (password_verify($matkhau, $row_nhanvien['MatKhau'])) {
+                    // Thiết lập session cho nhân viên
+                    if ($row_nhanvien['TYPE_ADMIN'] === 'Chủ Cửa Hàng') {
+                        $_SESSION['user_type'] = 'Chủ Cửa Hàng';
+                    } elseif ($row_nhanvien['TYPE_ADMIN'] === 'Nhân Viên') {
+                        $_SESSION['user_type'] = 'Nhân Viên';
+                    }
+                    $_SESSION['Anh'] = $row_nhanvien['Anh'];
                     $_SESSION['TenNhanVien'] = $row_nhanvien['TenNhanVien'];
                     $_SESSION['MaNhanVien'] = $row_nhanvien['MaNhanVien'];
                     $_SESSION['GioiTinh'] = $row_nhanvien['GioiTinh'];
@@ -73,7 +82,7 @@ if (isset($_POST['Email']) && isset($_POST['MatKhau'])) {
         }
     }
 } else {
-    header("Location: DangNhap.php");
+    header("Location: dangnhap.php");
     exit();
 }
 ?>
