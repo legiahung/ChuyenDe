@@ -138,7 +138,7 @@
       <p class="md:text-5xl font-bold sm:text-xl">Hoa Tai</p>
     </div>
   </div>
-  <div class="flex flex-wrap justify-center">
+  <div class="flex flex-wrap justify-center ">
     <?php
     $query = "SELECT * FROM sanpham WHERE MaLoaiTrangSuc = 1 LIMIT 5";
     $result = mysqli_query($conn, $query);
@@ -153,7 +153,7 @@
         // Cắt ngắn đoạn văn bản nếu quá dài
         $shortTitle = strlen($productTitle) > 30 ? wordwrap($productTitle, 30, "<br>", true) : $productTitle;
     ?>
-        <div class="md:flex md:flex-row md:justify-center w-full md:w-1/5 pb-10">
+        <div class="md:flex md:flex-row md:justify-center w-full md:w-1/5 pb-10 transition duration-300 transform hover:scale-110">
           <div class="max-w-sm mx-auto bg-white rounded-lg overflow-hidden shadow-lg h-full">
             <div class="text-center items-center">
               <a href="xemchitiet.php?id=<?= $productId ?>" class="hover-trigger relative block">
@@ -204,7 +204,7 @@
         // Cắt ngắn đoạn văn bản nếu quá dài
         $shortTitle = strlen($productTitle) > 30 ? wordwrap($productTitle, 30, "<br>", true) : $productTitle;
     ?>
-        <div class="md:flex md:flex-row md:justify-center w-full md:w-1/5 pb-10">
+        <div class="md:flex md:flex-row md:justify-center w-full md:w-1/5 pb-10 transition duration-300 transform hover:scale-110">
           <div class="max-w-sm mx-auto bg-white rounded-lg overflow-hidden shadow-lg h-full">
             <div class="text-center items-center">
               <a href="xemchitiet.php?id=<?= $productId ?>" class="hover-trigger relative block">
@@ -255,7 +255,7 @@
         // Cắt ngắn đoạn văn bản nếu quá dài
         $shortTitle = strlen($productTitle) > 30 ? wordwrap($productTitle, 30, "<br>", true) : $productTitle;
     ?>
-        <div class="md:flex md:flex-row md:justify-center w-full md:w-1/5 pb-10">
+        <div class="md:flex md:flex-row md:justify-center w-full md:w-1/5 pb-10 transition duration-300 transform hover:scale-110">
           <div class="max-w-sm mx-auto bg-white rounded-lg overflow-hidden shadow-lg h-full">
             <div class="text-center items-center">
               <a href="xemchitiet.php?id=<?= $productId ?>" class="hover-trigger relative block">
@@ -306,7 +306,7 @@
         // Cắt ngắn đoạn văn bản nếu quá dài
         $shortTitle = strlen($productTitle) > 30 ? wordwrap($productTitle, 30, "<br>", true) : $productTitle;
     ?>
-        <div class="md:flex md:flex-row md:justify-center w-full md:w-1/5 pb-10">
+        <div class="md:flex md:flex-row md:justify-center w-full md:w-1/5 pb-10 transition duration-300 transform hover:scale-110">
           <div class="max-w-sm mx-auto bg-white rounded-lg overflow-hidden shadow-lg h-full">
             <div class="text-center items-center">
               <a href="xemchitiet.php?id=<?= $productId ?>" class="hover-trigger relative block">
@@ -357,7 +357,7 @@
         // Cắt ngắn đoạn văn bản nếu quá dài
         $shortTitle = strlen($productTitle) > 30 ? wordwrap($productTitle, 30, "<br>", true) : $productTitle;
     ?>
-        <div class="md:flex md:flex-row md:justify-center w-full md:w-1/5 pb-10">
+        <div class="md:flex md:flex-row md:justify-center w-full md:w-1/5 pb-10 transition duration-300 transform hover:scale-110">
           <div class="max-w-sm mx-auto bg-white rounded-lg overflow-hidden shadow-lg h-full">
             <div class="text-center items-center">
               <a href="xemchitiet.php?id=<?= $productId ?>" class="hover-trigger relative block">

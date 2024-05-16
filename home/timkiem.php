@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['type']) && $_GET['type']
         // Cắt ngắn đoạn văn bản nếu quá dài
         $shortTitle = strlen($productTitle) > 30 ? wordwrap($productTitle, 30, "<br>", true) : $productTitle;
     ?>
-        <div class="md:flex md:flex-row md:justify-center w-full md:w-1/5 pb-10">
+        <div class="md:flex md:flex-row md:justify-center w-full md:w-1/5 pb-10 transition duration-300 transform hover:scale-110">
           <div class="max-w-sm mx-auto bg-white rounded-lg overflow-hidden shadow-lg h-full">
             <div class="text-center items-center">
               <a href="xemchitiet.php?id=<?= $productId ?>" class="hover-trigger relative block">
