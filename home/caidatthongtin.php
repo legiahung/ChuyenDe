@@ -48,7 +48,7 @@ $result = mysqli_query($conn, "SELECT * FROM taikhoankhachhang
                 <nav class="list-none">
                     <a class="block py-2 px-4 text-gray-700 hover:bg-gray-200 rounded mb-2" href="../home/thongtin.php"> Thông tin chung </a>
                     <a class="block py-2 px-4 text-gray-700 hover:bg-gray-200 rounded mb-2" href="../home/dondathang.php"> Đơn hàng </a>
-                    <a class="block py-2 px-4 text-white bg-blue-500 rounded mb-2" href="../home/caidatthongtin.php">Cài đặt thông tin</a>
+                    <a class="block py-2 px-4 text-black bg-yellow-300 rounded mb-2" href="../home/caidatthongtin.php">Cài đặt thông tin</a>
                     <a class="block py-2 px-4 text-gray-700 hover:bg-gray-200 rounded mb-2" href="../authentication/dangxuat.php">Đăng xuất</a>
                 </nav>
             </aside>
@@ -89,8 +89,8 @@ $result = mysqli_query($conn, "SELECT * FROM taikhoankhachhang
                                     <input disabled type="text" class="w-full border border-gray-300 px-4 py-2 rounded-full" name="Email" id="Email" value="<?php if (isset($row['Email'])) echo $row['Email'] ?>">
                                 </div>
                                 <div>
-                                    <input type="submit" value="Lưu" name="saveChanges" class="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer">
-                                    <a href="DoiMatKhau.php" class="bg-gray-300 text-gray-800 px-4 py-2 rounded cursor-pointer">Đổi mật khẩu</a>
+                                    <input type="submit" value="Lưu" name="saveChanges" class="bg-yellow-500 text-black px-4 py-2 rounded cursor-pointer">
+                                    <a href="doimatkhau.php" class="bg-gray-300 text-gray-800 px-4 py-2 rounded cursor-pointer">Đổi mật khẩu</a>
                                 </div>
                             </form>
                         </div>

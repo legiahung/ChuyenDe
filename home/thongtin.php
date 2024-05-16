@@ -23,7 +23,7 @@ WHERE MaKhachHang = '{$_SESSION['MaKhachHang']}'");
                 <div class="flex">
                     <aside class="w-1/4 pr-8">
                         <nav class="list-none">
-                            <a class="block py-2 px-4 text-white bg-blue-500 rounded mb-2" href="../home/thongtin.php"> Thông tin chung </a>
+                            <a class="block py-2 px-4 text-black bg-yellow-300 rounded mb-2" href="../home/thongtin.php"> Thông tin chung </a>
                             <a class="block py-2 px-4 text-gray-700 hover:bg-gray-200 rounded mb-2" href="../home/dondathang.php"> Đơn hàng </a>
                             <a class="block py-2 px-4 text-gray-700 hover:bg-gray-200 rounded mb-2" href="../home/caidatthongtin.php">Cài đặt thông tin</a>
                             <a class="block py-2 px-4 text-gray-700 hover:bg-gray-200 rounded mb-2" href="../authentication/dangxuat.php">Đăng xuất</a>
