@@ -28,7 +28,7 @@
                 </select>
             </div>
             <div class="mb-4">
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline shadow-lg shadow-blue-500/50" type="submit">Chuyển đổi</button>
+                <button class="inline-block shrink-0 rounded-md border border-yellow-600 bg-yellow-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-yellow-600 focus:outline-none focus:ring active:text-yellow-500" type="submit">Chuyển đổi</button>
             </div>
         </form>
         <?php

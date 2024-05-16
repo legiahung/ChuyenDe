@@ -4,7 +4,7 @@ include '../home/header.php';
 ?>
 <title>Đơn đặt hàng đã đặt</title>
 
-<section class="bg-gray py-8">
+<section class="bg-gray">
     <div class="container mx-auto">
         <h2 class="text-3xl font-semibold text-center">Tài khoản của tôi</h2>
     </div>
