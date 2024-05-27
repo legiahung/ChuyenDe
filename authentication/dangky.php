@@ -32,19 +32,19 @@ $pass = "";
                     <!-- Họ và tên Khách Hàng -->
                     <div class="col-span-6 sm:col-span-3">
                         <label class="block text-sm font-medium text-gray-700">Họ và tên Khách Hàng</label>
-                        <input type="text" name="name" value="<?= $name; ?>" class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-lg" required>
+                        <input type="text" name="name" value="<?= $name; ?>" class="mt-1 p-2 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-lg" required>
                     </div>
 
                     <!-- Email -->
                     <div class="col-span-6 sm:col-span-3">
                         <label class="block text-sm font-medium text-gray-700">Email</label>
-                        <input type="text" name="email" value="<?= $email; ?>" class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-lg" required>
+                        <input type="text" name="email" value="<?= $email; ?>" class="mt-1 p-2 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-lg" required>
                     </div>
 
                     <!-- Giới Tính -->
                     <div class="col-span-6 sm:col-span-3">
                         <label class="block text-sm font-medium text-gray-700">Giới Tính</label>
-                        <select name="gioitinh" class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-lg" required>
+                        <select name="gioitinh" class="mt-1 p-2 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-lg" required>
                             <option value="">Chọn giới tính</option>
                             <option value="0" <?= ($gioitinh == '0') ? 'selected' : ''; ?>>Nam</option>
                             <option value="1" <?= ($gioitinh == '1') ? 'selected' : ''; ?>>Nữ</option>
@@ -54,31 +54,31 @@ $pass = "";
                     <!-- Ngày Sinh -->
                     <div class="col-span-6 sm:col-span-3">
                         <label class="block text-sm font-medium text-gray-700">Ngày Sinh</label>
-                        <input type="date" name="ngaysinh" value="<?= $ngaysinh; ?>" class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-lg" required>
+                        <input type="date" name="ngaysinh" value="<?= $ngaysinh; ?>" class="mt-1 p-2 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-lg" required>
                     </div>
 
                     <!-- Địa Chỉ -->
                     <div class="col-span-6 sm:col-span-3">
                         <label class="block text-sm font-medium text-gray-700">Địa Chỉ</label>
-                        <input type="text" name="diachi" value="<?= $diachi; ?>" class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-lg" required>
+                        <input type="text" name="diachi" value="<?= $diachi; ?>" class="mt-1 p-2 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-lg" required>
                     </div>
 
                     <!-- Số Điện Thoại -->
                     <div class="col-span-6 sm:col-span-3">
                         <label class="block text-sm font-medium text-gray-700">Số Điện Thoại</label>
-                        <input type="text" name="sodienthoai" value="<?= $sodienthoai; ?>" class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-lg" required>
+                        <input type="text" name="sodienthoai" value="<?= $sodienthoai; ?>" class="mt-1 p-2 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-lg" required>
                     </div>
 
                     <!-- Mật Khẩu -->
                     <div class="col-span-6 sm:col-span-3">
                         <label class="block text-sm font-medium text-gray-700">Mật Khẩu</label>
-                        <input type="text" name="pass" value="<?= $pass; ?>" class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-lg" required>
+                        <input type="text" name="pass" value="<?= $pass; ?>" class="mt-1 p-2 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-lg" required>
                     </div>
 
                     <!-- Nút Tạo Tài Khoản và Đăng Nhập -->
                     <div class="col-span-6 sm:flex sm:items-center sm:gap-4">
                         <input type="submit" name="add" class="inline-block shrink-0 rounded-md border border-yellow-600 bg-yellow-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-yellow-600 focus:outline-none focus:ring active:text-yellow-500" value="Thêm tài khoản">
-                        <p class="mt-4 text-sm text-gray-500 sm:mt-0">Already have an account? <a href="../authentication/dangnhap.php" class="text-gray-700 underline">Đăng Nhập</a>.</p>
+                        <p class="mt-4 text-sm text-gray-500 sm:mt-0">Bạn đã có tài khoản rồi ư??? <a href="../authentication/dangnhap.php" class="text-gray-700 underline">Đăng Nhập</a>.</p>
                     </div>
                 </form>
             </div>

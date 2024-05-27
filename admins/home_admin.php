@@ -120,7 +120,7 @@ include 'admin_header.php';
     $productSales = json_encode(array_values($productSales));
     ?>
 
-    <canvas id="barChart" height="200"></canvas>
+    <canvas id="barChart" height="100"></canvas>
     <div id="legend"></div>
     <div class="flex flex-col text-center mt-2">
         <b>Tổng doanh thu: <?php echo number_format($totalRevenue); ?> VNĐ</b>
